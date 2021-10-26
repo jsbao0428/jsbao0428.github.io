@@ -2,8 +2,10 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://porobao.com/</loc><lastmod>2021-10-17T21:53:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://porobao.com/posts/</loc><lastmod>2021-10-17T21:53:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://porobao.com/week0/</loc><lastmod>2021-10-17T21:53:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://porobao.com/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://porobao.com/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>https://porobao.com/categories/</loc><lastmod>2021-10-26T23:30:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://porobao.com/</loc><lastmod>2021-10-26T23:30:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://porobao.com/posts/</loc><lastmod>2021-10-26T23:30:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://porobao.com/preface/</loc><lastmod>2021-10-26T23:30:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://porobao.com/tags/preface/</loc><lastmod>2021-10-26T23:30:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://porobao.com/tags/</loc><lastmod>2021-10-26T23:30:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://porobao.com/categories/week0/</loc><lastmod>2021-10-26T23:30:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>

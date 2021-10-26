@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>All Posts - Porobao</title>
-        <link>https://porobao.com/posts/</link>
-        <description>All Posts | Porobao</description>
+        <title>preface - Tag - Porobao</title>
+        <link>https://porobao.com/tags/preface/</link>
+        <description>preface - Tag - Porobao</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>toy042897@gmail.com (jsbao)</managingEditor>
-            <webMaster>toy042897@gmail.com (jsbao)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Oct 2021 19:48:40 &#43;0800</lastBuildDate><atom:link href="https://porobao.com/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>toy042897@gmail.com (jsbao)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Oct 2021 19:48:40 &#43;0800</lastBuildDate><atom:link href="https://porobao.com/tags/preface/" rel="self" type="application/rss+xml" /><item>
     <title>Preface</title>
     <link>https://porobao.com/preface/</link>
     <pubDate>Sun, 17 Oct 2021 19:48:40 &#43;0800</pubDate>
