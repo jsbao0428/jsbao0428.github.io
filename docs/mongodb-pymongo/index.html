@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>mongoDB &#43; Python - Poloshare</title><meta name="Description" content="About ML &amp; Python"><meta property="og:title" content="mongoDB &#43; Python" />
+<meta property="og:description" content="MongoDB Manipulation via Python Package" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://poloshare.com/mongodb-pymongo/" /><meta property="og:image" content="https://poloshare.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-20T12:33:49+08:00" />
+<meta property="article:modified_time" content="2021-11-20T12:33:49+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://poloshare.com/logo.png"/>
+
+<meta name="twitter:title" content="mongoDB &#43; Python"/>
+<meta name="twitter:description" content="MongoDB Manipulation via Python Package"/>
+<meta name="application-name" content="PoloShare">
+<meta name="apple-mobile-web-app-title" content="PoloShare"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://poloshare.com/mongodb-pymongo/" /><link rel="prev" href="https://poloshare.com/preface/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "mongoDB + Python",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/poloshare.com\/mongodb-pymongo\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/poloshare.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "python, mongodb","wordcount":  1340 ,
+        "url": "https:\/\/poloshare.com\/mongodb-pymongo\/","datePublished": "2021-11-20T12:33:49+08:00","dateModified": "2021-11-20T12:33:49+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/poloshare.com\/images\/avatar.png",
+                    "width":  512 ,
+                    "height":  512 
+                }},"author": {
+                "@type": "Person",
+                "name": "jsbao"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Poloshare">Polo Share</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jsbao0428" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Poloshare">Polo Share</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jsbao0428" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">mongoDB &#43; Python</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jsbao0428" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>jsbao</a></span>&nbsp;<span class="post-category">included in <a href="/categories/mongodb/"><i class="far fa-folder fa-fw"></i>MongoDB</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-20">2021-11-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1340 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#goals-we-will-complete-in-this-article">Goals We Will Complete in this Article</a></li>
+    <li><a href="#install-pymongo-via-pip">Install Pymongo via pip</a></li>
+    <li><a href="#create-client-object">Create Client Object</a></li>
+    <li><a href="#verify-connection-of-mongoclient">Verify Connection of MongoClient</a></li>
+    <li><a href="#develop-a-simple-web-crawler">Develop A Simple Web Crawler</a>
+      <ul>
+        <li><a href="#find-web-api">Find Web API</a></li>
+        <li><a href="#send-request-to-web-api">Send Request to Web API</a></li>
+        <li><a href="#parsing-json-structure">Parsing JSON Structure</a></li>
+        <li><a href="#data-preprocessing">Data Preprocessing</a></li>
+        <li><a href="#time-processing">Time Processing</a></li>
+        <li><a href="#from-dataframe-to-document">From DataFrame to Document</a></li>
+      </ul>
+    </li>
+    <li><a href="#database--collection-table-manipulation">Database &amp; Collection (Table) Manipulation</a>
+      <ul>
+        <li><a href="#create-a-database-crawler_test">Create a Database: <code>crawler_test</code></a></li>
+        <li><a href="#create-a-collection-table-items">Create a Collection (Table): <code>items</code></a></li>
+        <li><a href="#get-all-collections-tables">Get All Collections (Tables)</a></li>
+      </ul>
+    </li>
+    <li><a href="#insert">Insert</a>
+      <ul>
+        <li><a href="#insert-one">Insert One</a></li>
+        <li><a href="#insert-many">Insert Many</a></li>
+      </ul>
+    </li>
+    <li><a href="#select">Select</a>
+      <ul>
+        <li><a href="#select-all-documents">Select All Documents</a></li>
+        <li><a href="#select-count">Select Count(*)</a></li>
+        <li><a href="#select-use-condition">Select Use Condition</a></li>
+      </ul>
+    </li>
+    <li><a href="#delete">Delete</a>
+      <ul>
+        <li><a href="#delete-all-documents">Delete All Documents</a></li>
+        <li><a href="#delete-use-condition">Delete Use Condition</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>MongoDB Manipulation via Python Package</p>
+<h2 id="abstract">Abstract</h2>
+<p>In this article, we&rsquo;re going to demostrate how to use <code>pymongo</code> to control mongodb.</p>
+<p>We will implement a simple web crawler to scrap items data from Shopee (a E-commerce Platform), and use it as today&rsquo;s sample data to store it into our mongodb.</p>
+<h2 id="goals-we-will-complete-in-this-article">Goals We Will Complete in this Article</h2>
+<ul>
+<li><i class="far fa-check-square fa-fw"></i> Develop a simple web crawler</li>
+<li><i class="far fa-check-square fa-fw"></i> Understand basic knowledge of <code>pymongo</code></li>
+<li><i class="far fa-check-square fa-fw"></i> Learn basic manipulation of MongoDB</li>
+<li><i class="far fa-check-square fa-fw"></i> Acquire basic knowledge of <code>pytz</code></li>
+</ul>
+<h2 id="install-pymongo-via-pip">Install Pymongo via pip</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install pymongo
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="create-client-object">Create Client Object</h2>
+<p>We import <code>MongoClient</code> Object from pymongo, and Initialize it with the <code>Host</code> (where Mongo is running), <code>Username</code> and <code>Password</code>.</p>
+<blockquote>
+<p><strong>Notice</strong>:</p>
+<p><code>27017</code> is the default port for Mongo service. We can change it in the config file.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span> 
+
+<span class="n">MONGO_HOST</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MONGO_HOST&#39;</span><span class="p">)</span> <span class="c1"># localhost or other host</span>
+<span class="n">MONGO_USER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MONGO_USER&#39;</span><span class="p">)</span> 
+<span class="n">MONGO_PWD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MONGO_PWD&#39;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mongodb://</span><span class="si">{</span><span class="n">MONGO_USER</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">MONGO_PWD</span><span class="si">}</span><span class="s1">@</span><span class="si">{</span><span class="n">MONGO_HOST</span><span class="si">}</span><span class="s1">:27017&#39;</span><span class="p">)</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="verify-connection-of-mongoclient">Verify Connection of MongoClient</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">try</span><span class="p">:</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">server_info</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Well Connected&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="c1"># error handler </span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Connection Error&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="develop-a-simple-web-crawler">Develop A Simple Web Crawler</h2>
+<h3 id="find-web-api">Find Web API</h3>
+<h3 id="send-request-to-web-api">Send Request to Web API</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># set search keyword </span>
+<span class="n">search_keyword</span> <span class="o">=</span> <span class="s1">&#39;iphone&#39;</span>
+<span class="n">api_route</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://shopee.tw/api/v4/search/search_items?by=relevancy&amp;keyword=</span><span class="si">{</span><span class="n">search_keyword</span><span class="si">}</span><span class="s1">&amp;limit=60&amp;newest=0&amp;order=desc&amp;page_type=search&amp;scenario=PAGE_GLOBAL_SEARCH&amp;version=2&#39;</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">api_route</span><span class="p">)</span>
+
+<span class="c1"># check if api reponse correctly</span>
+<span class="n">res</span><span class="o">.</span><span class="n">status_code</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Read the response as JSON format</span>
+<span class="n">search_result_json</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="parsing-json-structure">Parsing JSON Structure</h3>
+<p>By looking into <code>search_result_json</code>, we can find a hierarchical structure like below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="p">{</span>
+    <span class="s1">&#39;items&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;item_basic&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;冬季促銷大熱賣 原廠全新Apple iPhone 13 128GB(午夜/星光/粉/紅/藍)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="s1">&#39;b7c27cc99aba7955cf1890c50638c2f8&#39;</span><span class="p">,</span>
+            <span class="o">...</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;adsid&#39;</span><span class="p">:</span> <span class="mi">35299839</span><span class="p">,</span>
+        <span class="o">...</span>
+    <span class="p">],</span> 
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we know that item-related data is in each <code>item_basic</code>, we can extract them using python <code>for</code> loop.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">items_data</span> <span class="o">=</span> <span class="n">search_result_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;items&#39;</span><span class="p">)</span>
+<span class="n">items_basic_data</span> <span class="o">=</span> <span class="p">[</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;item_basic&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items_data</span> <span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="data-preprocessing">Data Preprocessing</h3>
+<p>Let&rsquo;s do some data-cleaning or preprocessing and make it more human-readable.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1">#convert json data to pandas dataframe</span>
+<span class="n">items_basic_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">items_basic_data</span><span class="p">)[[</span><span class="s1">&#39;itemid&#39;</span><span class="p">,</span> <span class="s1">&#39;shopid&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">]]</span>
+
+<span class="c1"># add image url prefix for image hash code</span>
+<span class="n">image_url_prefix</span> <span class="o">=</span> <span class="s1">&#39;https://cf.shopee.tw/file/&#39;</span>
+<span class="n">items_basic_df</span><span class="p">[</span><span class="s1">&#39;image_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">items_basic_df</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">image_url_prefix</span> <span class="o">+</span> <span class="n">x</span>
+<span class="p">)</span>
+<span class="n">items_basic_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># preview, show below</span>
+</code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>itemid</th>
+<th>shopid</th>
+<th>name</th>
+<th>image</th>
+<th>image_url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>158215044</td>
+<td>16740752</td>
+<td>透明滿版保護貼 玻璃貼 &hellip;</td>
+<td>b73326d54f4d0ab50cd994397197a3d7</td>
+<td><a href="https://cf.shopee.tw/file/b73326d54f4d0ab50cd9.." target="_blank" rel="noopener noreffer">https://cf.shopee.tw/file/b73326d54f4d0ab50cd9..</a>.</td>
+</tr>
+<tr>
+<td>11052111436</td>
+<td>272961258</td>
+<td>限時3天秒殺 PD 閃充線 &hellip;</td>
+<td>d6663c9cde823bc32dabade7de1e4c0c</td>
+<td><a href="https://cf.shopee.tw/file/d6663c9cde823bc32dab.." target="_blank" rel="noopener noreffer">https://cf.shopee.tw/file/d6663c9cde823bc32dab..</a>.</td>
+</tr>
+<tr>
+<td>15714606</td>
+<td>1982863</td>
+<td>Q哥 抗藍光玻璃貼 &hellip;</td>
+<td>547f1dabfb9ee61e1e88f87cf29ebbdc</td>
+<td><a href="https://cf.shopee.tw/file/547f1dabfb9ee61e1e88.." target="_blank" rel="noopener noreffer">https://cf.shopee.tw/file/547f1dabfb9ee61e1e88..</a>.</td>
+</tr>
+<tr>
+<td>3326952</td>
+<td>196610</td>
+<td>水晶盾 真5D曲面滿版保護貼 &hellip;</td>
+<td>4aeebf5cd804f1278f49573984cfd48c</td>
+<td><a href="https://cf.shopee.tw/file/4aeebf5cd804f1278f49.." target="_blank" rel="noopener noreffer">https://cf.shopee.tw/file/4aeebf5cd804f1278f49..</a>.</td>
+</tr>
+<tr>
+<td>10407177063</td>
+<td>444998999</td>
+<td>【鴻威通訊】 iPhone8 /iPhone8 &hellip;</td>
+<td>529051371e5d17bafae2125160a137ce</td>
+<td><a href="https://cf.shopee.tw/file/529051371e5d17bafae2.." target="_blank" rel="noopener noreffer">https://cf.shopee.tw/file/529051371e5d17bafae2..</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="time-processing">Time Processing</h3>
+<p>Before we insert these data, let&rsquo;s add a timestamp to every row. It can help us delete over-old data in the future.</p>
+<blockquote>
+<p><strong>Notice</strong></p>
+<p>Because MongoDB assumes that dates and times are in UTC, care should be taken to ensure that dates and times written to the database reflect UTC</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="c1"># item_basic_df[&#39;update_date&#39;] = datetime.utcnow() # in general situation</span>
+<span class="n">items_basic_df</span><span class="p">[</span><span class="s1">&#39;update_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># for test</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="from-dataframe-to-document">From DataFrame to Document</h3>
+<p>MongoDB uses json-like data type called <code>Document</code> to store data. We can use <code>pandas</code> built-in function to convert it.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">items_basic_document</span> <span class="o">=</span> <span class="n">items_basic_df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s print it to preview</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="c1"># outline of single document</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;single document (dict)&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">items_basic_document</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="c1"># outline of multi-document</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;multiple document (list of dict)&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">items_basic_document</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>output</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">single document (dict)
+{&#39;image&#39;: &#39;b73326d54f4d0ab50cd994397197a3d7&#39;,
+ &#39;image_url&#39;: &#39;https://cf.shopee.tw/file/b73326d54f4d0ab50cd994397197a3d7&#39;,
+ &#39;itemid&#39;: 158215044,
+ &#39;name&#39;: &#39;透明滿版保護貼 玻璃貼 背貼適用iPhone 13 12 11 Pro Max SE2 XR XS X i11 i12&#39;,
+ &#39;shopid&#39;: 16740752,
+ &#39;update_date&#39;: Timestamp(&#39;2021-01-01 00:00:00&#39;)}
+--------------------------------------------------------------------------------
+multiple document (list of dict)
+[{&#39;image&#39;: &#39;b73326d54f4d0ab50cd994397197a3d7&#39;,
+  &#39;image_url&#39;: &#39;https://cf.shopee.tw/file/b73326d54f4d0ab50cd994397197a3d7&#39;,
+  &#39;itemid&#39;: 158215044,
+  &#39;name&#39;: &#39;透明滿版保護貼 玻璃貼 背貼適用iPhone 13 12 11 Pro Max SE2 XR XS X i11 i12&#39;,
+  &#39;shopid&#39;: 16740752,
+  &#39;update_date&#39;: Timestamp(&#39;2021-01-01 00:00:00&#39;)},
+ {&#39;image&#39;: &#39;d6663c9cde823bc32dabade7de1e4c0c&#39;,
+  &#39;image_url&#39;: &#39;https://cf.shopee.tw/file/d6663c9cde823bc32dabade7de1e4c0c&#39;,
+  &#39;itemid&#39;: 11052111436,
+  &#39;name&#39;: &#39;限時3天秒殺 PD 閃充線 充電線 傳輸線 適用於iPhone 11 12 13 pro max 超級快充線&#39;,
+  &#39;shopid&#39;: 272961258,
+  &#39;update_date&#39;: Timestamp(&#39;2021-01-01 00:00:00&#39;)}]
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Let&rsquo;s put prepared data aside. There are some things we must know first.</p>
+</blockquote>
+<h2 id="database--collection-table-manipulation">Database &amp; Collection (Table) Manipulation</h2>
+<p>Here we are going to create an object to manipulate our database, like getting all the collections (tables) of the database.</p>
+<h3 id="create-a-database-crawler_test">Create a Database: <code>crawler_test</code></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">crawler_test</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;crawler_test&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="create-a-collection-table-items">Create a Collection (Table): <code>items</code></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># both work</span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">crawler_test</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]</span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;crawler_test&#39;</span><span class="p">][</span><span class="s1">&#39;items&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="get-all-collections-tables">Get All Collections (Tables)</h3>
+<p>We need to <strong>insert at least one document</strong> so that the database <code>crawler_test</code> &amp; the table <code>items</code> will be created.</p>
+<blockquote>
+<p><strong>Notice</strong>:</p>
+<p>An important note about collections (and databases) in MongoDB is that they are created lazily - none of the above commands have actually performed any operations on the MongoDB server. Collections and databases are created when the first document is inserted into them.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Truncate table</span>
+<span class="n">items</span><span class="o">.</span><span class="n">delete_many</span><span class="p">({})</span>
+
+<span class="c1"># insert one data into table: items</span>
+<span class="n">items</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s1">&#39;key_test&#39;</span><span class="p">:</span> <span class="s1">&#39;value_test&#39;</span><span class="p">})</span>
+
+<span class="c1"># list all tables</span>
+<span class="n">table_list</span> <span class="o">=</span> <span class="n">crawler_test</span><span class="o">.</span><span class="n">list_collection_names</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table_list</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>output</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#39;items&#39;]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="insert">Insert</h2>
+<p>Here, we are going to insert prepared-data into our table</p>
+<blockquote>
+<p>if we don&rsquo;t specify <code>_id</code> of the document, a <code>bson.objectid.ObjectId</code> will be auto-generated like <code>{'_id': bson.objectid.ObjectId }</code>.</p>
+<p>The rules of  <code>_id</code> generation can be refered to the <a href="https://docs.mongodb.com/manual/reference/method/ObjectId/" target="_blank" rel="noopener noreffer">link</a>.</p>
+</blockquote>
+<!-- 自動生成的 ObjectId 前 4 bytes 會是 時間 -->
+<h3 id="insert-one">Insert One</h3>
+<p>Insert one document at once</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;crawler_test&#39;</span><span class="p">][</span><span class="s1">&#39;items&#39;</span><span class="p">]</span> <span class="c1"># specify collection</span>
+<span class="n">items</span><span class="o">.</span><span class="n">delete_many</span><span class="p">({})</span> <span class="c1"># Truncate table</span>
+<span class="n">one_document</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">items_basic_document</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Before Insert:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">one_document</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">response_insert_one</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="n">one_document</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;After Insert:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">one_document</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Before Insert:
+{&#39;image&#39;: &#39;b73326d54f4d0ab50cd994397197a3d7&#39;,
+ &#39;image_url&#39;: &#39;https://cf.shopee.tw/file/b73326d54f4d0ab50cd994397197a3d7&#39;,
+ &#39;itemid&#39;: 158215044,
+ &#39;name&#39;: &#39;透明滿版保護貼 玻璃貼 背貼適用iPhone 13 12 11 Pro Max SE2 XR XS X i11 i12&#39;,
+ &#39;shopid&#39;: 16740752,
+ &#39;update_date&#39;: Timestamp(&#39;2021-11-20 09:48:52.155124+0000&#39;, tz=&#39;UTC&#39;)}
+--------------------------------------------------------------------------------
+After Insert:
+{&#39;_id&#39;: ObjectId(&#39;6198c488a8bbf780143bec4d&#39;),
+ &#39;image&#39;: &#39;b73326d54f4d0ab50cd994397197a3d7&#39;,
+ &#39;image_url&#39;: &#39;https://cf.shopee.tw/file/b73326d54f4d0ab50cd994397197a3d7&#39;,
+ &#39;itemid&#39;: 158215044,
+ &#39;name&#39;: &#39;透明滿版保護貼 玻璃貼 背貼適用iPhone 13 12 11 Pro Max SE2 XR XS X i11 i12&#39;,
+ &#39;shopid&#39;: 16740752,
+ &#39;update_date&#39;: Timestamp(&#39;2021-11-20 09:48:52.155124+0000&#39;, tz=&#39;UTC&#39;)}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="insert-many">Insert Many</h3>
+<p>Insert multiple document at once</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">copy</span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;crawler_test&#39;</span><span class="p">][</span><span class="s1">&#39;items&#39;</span><span class="p">]</span> <span class="c1"># specify collection</span>
+<span class="n">items</span><span class="o">.</span><span class="n">delete_many</span><span class="p">({})</span> <span class="c1"># Truncate table</span>
+<span class="n">many_document</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">items_basic_document</span><span class="p">)</span>
+<span class="n">response_insert_many</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">many_document</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Check ObjectId we just inserted</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">response_insert_many</span><span class="o">.</span><span class="n">inserted_ids</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Output</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[ObjectId(&#39;6187ad0ea896a79a2cdae209&#39;), ObjectId(&#39;6187ad0ea896a79a2cdae20a&#39;)]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="select">Select</h2>
+<p>Here we are going to select documents we just inserted into the collection</p>
+<h3 id="select-all-documents">Select All Documents</h3>
+<p>Select all documents</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">items</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s1">&#39;crawler_test&#39;</span><span class="p">][</span><span class="s1">&#39;items&#39;</span><span class="p">]</span> <span class="c1"># specify collection</span>
+
+<span class="c1"># equal to SELECT * FROM crawler_test.items</span>
+<span class="n">response_select_all</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">find</span><span class="p">({})</span> 
+
+<span class="c1"># use list iterate response_select_all and store as response_select_all_result, </span>
+<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="select-count">Select Count(*)</h3>
+<p>Count the number of documents in the collection</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">items</span><span class="o">.</span><span class="n">estimated_document_count</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="select-use-condition">Select Use Condition</h3>
+<p>Select documents with condition (use date as example)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span>
+<span class="n">response_select_all</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># &#39;$gte&#39;: datetime(2021, 1, 1, 0, 0)</span>
+            <span class="c1"># &#39;$eq&#39;: datetime(2021, 1, 1, 0, 0)</span>
+            <span class="s1">&#39;$lte&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
+<span class="n">response_select_all_result</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span>
+<span class="n">response_select_all</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># &#39;$eq&#39;: tw_tz.localize(datetime(2021, 1, 1, 8, 0))</span>
+            <span class="c1"># &#39;$gte&#39;: tw_tz.localize(datetime(2021, 1, 1, 8, 0))</span>
+            <span class="s1">&#39;$lte&#39;</span><span class="p">:</span> <span class="n">tw_tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
+<span class="n">response_select_all_result</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">bson.codec_options</span> <span class="kn">import</span> <span class="n">CodecOptions</span>
+<span class="n">aware_times</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">with_options</span><span class="p">(</span><span class="n">codec_options</span><span class="o">=</span><span class="n">CodecOptions</span><span class="p">(</span>
+    <span class="n">tz_aware</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">tzinfo</span><span class="o">=</span><span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;Asia/Taipei&#39;</span><span class="p">))</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span>
+<span class="n">response_select_all</span> <span class="o">=</span> <span class="n">aware_times</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># &#39;$gte&#39;: datetime(2021, 1, 1, 0, 0)</span>
+            <span class="c1"># &#39;$eq&#39;: datetime(2021, 1, 1, 0, 0)</span>
+            <span class="s1">&#39;$lte&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
+<span class="n">response_select_all_result</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span>
+<span class="n">response_select_all</span> <span class="o">=</span> <span class="n">aware_times</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># &#39;$eq&#39;: tw_tz.localize(datetime(2021, 1, 1, 8, 0))</span>
+            <span class="c1"># &#39;$gte&#39;: tw_tz.localize(datetime(2021, 1, 1, 8, 0))</span>
+            <span class="s1">&#39;$lte&#39;</span><span class="p">:</span> <span class="n">tw_tz</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
+<span class="n">response_select_all_result</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="delete">Delete</h2>
+<p>Delete documents from the collection</p>
+<h3 id="delete-all-documents">Delete All Documents</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">items</span><span class="o">.</span><span class="n">delete_many</span><span class="p">({})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="delete-use-condition">Delete Use Condition</h3>
+<p>Delete documents with condition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/mongodb-pymongo/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://poloshare.com/mongodb-pymongo/" data-title="mongoDB &#43; Python" data-hashtags="python,mongodb"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://poloshare.com/mongodb-pymongo/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://poloshare.com/mongodb-pymongo/" data-title="mongoDB &#43; Python"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://poloshare.com/mongodb-pymongo/" data-title="mongoDB &#43; Python"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/mongodb/">mongodb</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/preface/" class="prev" rel="prev" title="Preface"><i class="fas fa-angle-left fa-fw"></i>Preface</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/jsbao0428" target="_blank">jsbao</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://porobao.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

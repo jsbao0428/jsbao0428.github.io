@@ -8,8 +8,8 @@ author: "jsbao"
 authorLink: ""
 description: "Talking about why I build this site & future planning"
 
-tags: ["preface"]
-categories: ["week0"]
+tags: ["introduction"]
+categories: ["Self-Introduction"]
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
