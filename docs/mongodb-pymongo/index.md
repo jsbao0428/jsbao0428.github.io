@@ -216,7 +216,7 @@ Here, we are going to insert prepared-data into our table
 >
 > The rules of  `_id` generation can be refered to the [link](https://docs.mongodb.com/manual/reference/method/ObjectId/).
 <!-- 自動生成的 ObjectId 前 4 bytes 會是 時間 -->
-### Insert One
+### Insert One Document
 
 Insert one document at once
 ```python
@@ -252,7 +252,7 @@ After Insert:
  'update_date': Timestamp('2021-11-20 09:48:52.155124+0000', tz='UTC')}
 ```
 
-### Insert Many
+### Insert Many Documents
 
 Insert multiple document at once
 ```python
@@ -272,7 +272,7 @@ Output
 [ObjectId('6187ad0ea896a79a2cdae209'), ObjectId('6187ad0ea896a79a2cdae20a')]
 ```
 
-## Select
+## Select Documents
 Here we are going to select documents we just inserted into the collection
 
 ### Select All Documents
@@ -288,33 +288,41 @@ response_select_all = items.find({})
 response_select_all_result = list(response_select_all)
 ```
 
-### Select Count(*)
+### Count Documents 
 
 Count the number of documents in the collection
 ```python
 items.estimated_document_count()
 ```
 
-### Select Use Condition 
+### Select Documents With Condition 
+> use date as example
 
-Select documents with condition (use date as example)
+Set the timezone
 ```python
-from datetime import  datetime
+# 
+import pytz
+from datetime import  datetime 
+tw_tz = pytz.timezone('Asia/Taipei')
+```
+
+Select by UTC timezone
+```python
+# select documents which its update_date less than or equal to 2021, 1, 1 00:00 UTC
 response_select_all = items.find(
     {
         'update_date': {
-            # '$gte': datetime(2021, 1, 1, 0, 0)
-            # '$eq': datetime(2021, 1, 1, 0, 0)
-            '$lte': datetime(2021, 1, 1, 0, 0)
+            # '$gte': datetime(2021, 1, 1, 0, 0) # $gte greater than or equal to
+            # '$eq': datetime(2021, 1, 1, 0, 0) # equal to
+            '$lte': datetime(2021, 1, 1, 0, 0) # less than or equal to
         }
     }
 )
-response_select_all_result = list(response_select_all)
-response_select_all_result
 ```
 
+Select by different timezone
 ```python
-from datetime import  datetime
+# select documents which its update_date less than or equal to 2021, 1, 1 00:00 UTC
 response_select_all = items.find(
     {
         'update_date': {
@@ -324,11 +332,11 @@ response_select_all = items.find(
         }
     }
 )
-response_select_all_result = list(response_select_all)
-response_select_all_result
 ```
 
+> If we hope the results of select contain timezone
 
+Set the timezone we want in format of return  
 ```python
 from bson.codec_options import CodecOptions
 aware_times = items.with_options(codec_options=CodecOptions(
@@ -337,8 +345,9 @@ aware_times = items.with_options(codec_options=CodecOptions(
 )
 ```
 
+Select by UTC timezone
 ```python
-from datetime import  datetime
+# select documents which its update_date less than or equal to 2021, 1, 1 00:00 UTC
 response_select_all = aware_times.find(
     {
         'update_date': {
@@ -348,12 +357,10 @@ response_select_all = aware_times.find(
         }
     }
 )
-response_select_all_result = list(response_select_all)
-response_select_all_result
 ```
 
+Select by different timezone
 ```python
-from datetime import  datetime
 response_select_all = aware_times.find(
     {
         'update_date': {
@@ -363,11 +370,15 @@ response_select_all = aware_times.find(
         }
     }
 )
+```
+
+Show result
+```python
 response_select_all_result = list(response_select_all)
 response_select_all_result
 ```
 
-## Delete
+## Delete Documents
 Delete documents from the collection
 
 ### Delete All Documents
@@ -376,10 +387,20 @@ Delete documents from the collection
 items.delete_many({})
 ```
 
-### Delete Use Condition 
+### Delete Documents With Condition 
 
 Delete documents with condition
 ```python
+# delete documents which its update_date less than or equal to 2021, 1, 1 00:00 UTC
+items.delete_many(
+    {
+        'update_date': {
+            # '$gte': datetime(2021, 1, 1, 0, 0)
+            # '$eq': datetime(2021, 1, 1, 0, 0)
+            '$lte': datetime(2021, 1, 1, 0, 0)
+        }
+    }
+)
 ```
 
 

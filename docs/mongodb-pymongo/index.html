@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://poloshare.com/mongodb-pymongo/" /><meta property="og:image" content="https://poloshare.com/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-11-20T12:33:49+08:00" />
-<meta property="article:modified_time" content="2021-11-20T12:33:49+08:00" />
+<meta property="article:modified_time" content="2021-11-21T01:11:19+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://poloshare.com/logo.png"/>
@@ -34,8 +34,8 @@
                             "url": "https:\/\/poloshare.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "python, mongodb","wordcount":  1340 ,
-        "url": "https:\/\/poloshare.com\/mongodb-pymongo\/","datePublished": "2021-11-20T12:33:49+08:00","dateModified": "2021-11-20T12:33:49+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "python, mongodb","wordcount":  1477 ,
+        "url": "https:\/\/poloshare.com\/mongodb-pymongo\/","datePublished": "2021-11-20T12:33:49+08:00","dateModified": "2021-11-21T01:11:19+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -116,7 +116,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">mongoDB &#43; Python</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/jsbao0428" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>jsbao</a></span>&nbsp;<span class="post-category">included in <a href="/categories/mongodb/"><i class="far fa-folder fa-fw"></i>MongoDB</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-20">2021-11-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1340 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-20">2021-11-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1477 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -149,21 +149,21 @@
     </li>
     <li><a href="#insert">Insert</a>
       <ul>
-        <li><a href="#insert-one">Insert One</a></li>
-        <li><a href="#insert-many">Insert Many</a></li>
+        <li><a href="#insert-one-document">Insert One Document</a></li>
+        <li><a href="#insert-many-documents">Insert Many Documents</a></li>
       </ul>
     </li>
-    <li><a href="#select">Select</a>
+    <li><a href="#select-documents">Select Documents</a>
       <ul>
         <li><a href="#select-all-documents">Select All Documents</a></li>
-        <li><a href="#select-count">Select Count(*)</a></li>
-        <li><a href="#select-use-condition">Select Use Condition</a></li>
+        <li><a href="#count-documents">Count Documents</a></li>
+        <li><a href="#select-documents-with-condition">Select Documents With Condition</a></li>
       </ul>
     </li>
-    <li><a href="#delete">Delete</a>
+    <li><a href="#delete-documents">Delete Documents</a>
       <ul>
         <li><a href="#delete-all-documents">Delete All Documents</a></li>
-        <li><a href="#delete-use-condition">Delete Use Condition</a></li>
+        <li><a href="#delete-documents-with-condition">Delete Documents With Condition</a></li>
       </ul>
     </li>
   </ul>
@@ -566,7 +566,7 @@ multiple document (list of dict)
 <p>The rules of  <code>_id</code> generation can be refered to the <a href="https://docs.mongodb.com/manual/reference/method/ObjectId/" target="_blank" rel="noopener noreffer">link</a>.</p>
 </blockquote>
 <!-- 自動生成的 ObjectId 前 4 bytes 會是 時間 -->
-<h3 id="insert-one">Insert One</h3>
+<h3 id="insert-one-document">Insert One Document</h3>
 <p>Insert one document at once</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -635,7 +635,7 @@ After Insert:
  &#39;update_date&#39;: Timestamp(&#39;2021-11-20 09:48:52.155124+0000&#39;, tz=&#39;UTC&#39;)}
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="insert-many">Insert Many</h3>
+</div><h3 id="insert-many-documents">Insert Many Documents</h3>
 <p>Insert multiple document at once</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -671,7 +671,7 @@ After Insert:
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[ObjectId(&#39;6187ad0ea896a79a2cdae209&#39;), ObjectId(&#39;6187ad0ea896a79a2cdae20a&#39;)]
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="select">Select</h2>
+</div><h2 id="select-documents">Select Documents</h2>
 <p>Here we are going to select documents we just inserted into the collection</p>
 <h3 id="select-all-documents">Select All Documents</h3>
 <p>Select all documents</p>
@@ -695,7 +695,7 @@ After Insert:
 <span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="select-count">Select Count(*)</h3>
+</div><h3 id="count-documents">Count Documents</h3>
 <p>Count the number of documents in the collection</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -705,8 +705,26 @@ After Insert:
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">items</span><span class="o">.</span><span class="n">estimated_document_count</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="select-use-condition">Select Use Condition</h3>
-<p>Select documents with condition (use date as example)</p>
+</div><h3 id="select-documents-with-condition">Select Documents With Condition</h3>
+<blockquote>
+<p>use date as example</p>
+</blockquote>
+<p>Set the timezone</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># </span>
+<span class="kn">import</span> <span class="nn">pytz</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span> 
+<span class="n">tw_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;Asia/Taipei&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Select by UTC timezone</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -719,25 +737,22 @@ After Insert:
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># select documents which its update_date less than or equal to 2021, 1, 1 00:00 UTC</span>
 <span class="n">response_select_all</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
     <span class="p">{</span>
         <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="c1"># &#39;$gte&#39;: datetime(2021, 1, 1, 0, 0)</span>
-            <span class="c1"># &#39;$eq&#39;: datetime(2021, 1, 1, 0, 0)</span>
-            <span class="s1">&#39;$lte&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="c1"># &#39;$gte&#39;: datetime(2021, 1, 1, 0, 0) # $gte greater than or equal to</span>
+            <span class="c1"># &#39;$eq&#39;: datetime(2021, 1, 1, 0, 0) # equal to</span>
+            <span class="s1">&#39;$lte&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># less than or equal to</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">)</span>
-<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
-<span class="n">response_select_all_result</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><p>Select by different timezone</p>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -749,11 +764,9 @@ After Insert:
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># select documents which its update_date less than or equal to 2021, 1, 1 00:00 UTC</span>
 <span class="n">response_select_all</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
     <span class="p">{</span>
         <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -763,11 +776,13 @@ After Insert:
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">)</span>
-<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
-<span class="n">response_select_all_result</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><blockquote>
+<p>If we hope the results of select contain timezone</p>
+</blockquote>
+<p>Set the timezone we want in format of return</p>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -783,7 +798,8 @@ After Insert:
 <span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><p>Select by UTC timezone</p>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -795,11 +811,9 @@ After Insert:
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># select documents which its update_date less than or equal to 2021, 1, 1 00:00 UTC</span>
 <span class="n">response_select_all</span> <span class="o">=</span> <span class="n">aware_times</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
     <span class="p">{</span>
         <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -809,28 +823,23 @@ After Insert:
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">)</span>
-<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
-<span class="n">response_select_all_result</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><p>Select by different timezone</p>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span>  <span class="n">datetime</span>
-<span class="n">response_select_all</span> <span class="o">=</span> <span class="n">aware_times</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">response_select_all</span> <span class="o">=</span> <span class="n">aware_times</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
     <span class="p">{</span>
         <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
             <span class="c1"># &#39;$eq&#39;: tw_tz.localize(datetime(2021, 1, 1, 8, 0))</span>
@@ -839,11 +848,20 @@ After Insert:
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">)</span>
-<span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Show result</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">response_select_all_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response_select_all</span><span class="p">)</span>
 <span class="n">response_select_all_result</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="delete">Delete</h2>
+</div><h2 id="delete-documents">Delete Documents</h2>
 <p>Delete documents from the collection</p>
 <h3 id="delete-all-documents">Delete All Documents</h3>
 <div class="highlight"><div class="chroma">
@@ -854,19 +872,40 @@ After Insert:
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">items</span><span class="o">.</span><span class="n">delete_many</span><span class="p">({})</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="delete-use-condition">Delete Use Condition</h3>
+</div><h3 id="delete-documents-with-condition">Delete Documents With Condition</h3>
 <p>Delete documents with condition</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code></code></pre></td>
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># delete documents which its update_date less than or equal to 2021, 1, 1 00:00 UTC</span>
+<span class="n">items</span><span class="o">.</span><span class="n">delete_many</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;update_date&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># &#39;$gte&#39;: datetime(2021, 1, 1, 0, 0)</span>
+            <span class="c1"># &#39;$eq&#39;: datetime(2021, 1, 1, 0, 0)</span>
+            <span class="s1">&#39;$lte&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2021-11-20</span>
+                <span>Updated on 2021-11-21&nbsp;<a class="git-hash" href="eeee/commit/af65b50d5fd1abfb13546b87fb2c9e440d70f3d4" target="_blank" title="commit by jsbao(toy042897@gmail.com) af65b50d5fd1abfb13546b87fb2c9e440d70f3d4: mongo">
+                                    <i class="fas fa-hashtag fa-fw"></i>af65b50</a></span>
             </div>
             <div class="post-info-license"></div>
         </div>
