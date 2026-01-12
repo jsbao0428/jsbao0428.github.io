@@ -1,0 +1,11 @@
+# Hugo build files
+public/
+.hugo_build.lock
+resources/_gen/
+
+# OS files
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
