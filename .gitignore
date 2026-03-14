@@ -1,7 +1,7 @@
-# Hugo build files
-public/
-.hugo_build.lock
-resources/_gen/
+node_modules/
+build/
+.svelte-kit/
+package-lock.json
 
 # OS files
 .DS_Store
@@ -9,3 +9,5 @@ resources/_gen/
 # IDE
 .idea/
 .vscode/
+.claude/
+stitch/
