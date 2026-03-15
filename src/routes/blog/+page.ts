@@ -13,11 +13,10 @@ interface ArticleMeta {
 }
 
 export const load: PageLoad = async () => {
-	const articleModules = import.meta.glob('/src/content/articles/*.md', { eager: true });
+	const articleModules = import.meta.glob('/src/content/articles/**/*.md', { eager: true });
 
 	const articles: ArticleMeta[] = Object.entries(articleModules).map(
-		([path, module]: [string, any]) => ({
-			slug: path.split('/').pop()?.replace('.md', '') ?? '',
+		([, module]: [string, any]) => ({
 			...module.metadata
 		})
 	);

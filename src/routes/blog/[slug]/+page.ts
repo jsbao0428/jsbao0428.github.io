@@ -1,7 +1,17 @@
 import type { PageLoad } from './$types';
 
+const articleModules = import.meta.glob('/src/content/articles/**/*.md', { eager: true });
+
+function findBySlug(slug: string): any {
+	for (const mod of Object.values(articleModules)) {
+		if ((mod as any).metadata?.slug === slug) return mod;
+	}
+	return null;
+}
+
 export const load: PageLoad = async ({ params }) => {
-	const post = await import(`../../../content/articles/${params.slug}.md`);
+	const post = findBySlug(params.slug);
+	if (!post) throw new Error(`Article not found: ${params.slug}`);
 	return {
 		content: post.default,
 		metadata: post.metadata
@@ -9,8 +19,7 @@ export const load: PageLoad = async ({ params }) => {
 };
 
 export function entries() {
-	const modules = import.meta.glob('/src/content/articles/*.md');
-	return Object.keys(modules).map((path) => ({
-		slug: path.split('/').pop()!.replace('.md', '')
+	return Object.values(articleModules).map((mod: any) => ({
+		slug: mod.metadata.slug
 	}));
 }

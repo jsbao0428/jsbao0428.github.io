@@ -2,6 +2,7 @@
 	let { data } = $props();
 
 	let activeCategory = $state('All Articles');
+	let activeTag = $state('');
 
 	const categoryIcons: Record<string, string> = {
 		'Web Development': 'code',
@@ -25,9 +26,28 @@
 	});
 
 	let filteredArticles = $derived(() => {
-		if (activeCategory === 'All Articles') return data.articles;
-		return data.articles.filter((a: any) => a.category === activeCategory);
+		let result = data.articles;
+		if (activeCategory !== 'All Articles') {
+			result = result.filter((a: any) => a.category === activeCategory);
+		}
+		if (activeTag) {
+			result = result.filter((a: any) => a.tags?.includes(activeTag));
+		}
+		return result;
 	});
+
+	function toggleTag(tag: string) {
+		if (activeTag === tag) {
+			activeTag = '';
+		} else {
+			activeTag = tag;
+		}
+	}
+
+	function selectCategory(label: string) {
+		activeCategory = label;
+		activeTag = '';
+	}
 </script>
 
 <svelte:head>
@@ -50,7 +70,7 @@
 				<nav class="space-y-1">
 					{#each categories() as cat}
 						<button
-							onclick={() => (activeCategory = cat.label)}
+							onclick={() => selectCategory(cat.label)}
 							class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors w-full text-left cursor-pointer
 							{activeCategory === cat.label
 								? 'bg-primary text-white font-medium'
@@ -79,11 +99,15 @@
 				</h3>
 				<div class="flex flex-wrap gap-2">
 					{#each allTags() as tag}
-						<span
-							class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300"
+						<button
+							onclick={() => toggleTag(tag)}
+							class="px-3 py-1 rounded-full text-xs font-medium cursor-pointer transition-colors
+							{activeTag === tag
+								? 'bg-primary text-white'
+								: 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-primary/20 hover:text-primary'}"
 						>
 							{tag}
-						</span>
+						</button>
 					{/each}
 				</div>
 			</section>
