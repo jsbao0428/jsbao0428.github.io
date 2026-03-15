@@ -1,15 +1,33 @@
 <script lang="ts">
 	let { data } = $props();
 
-	const categories = [
-		{ icon: 'article', label: 'All Articles', active: true },
-		{ icon: 'code', label: 'Web Development', active: false },
-		{ icon: 'database', label: 'Data Science', active: false },
-		{ icon: 'palette', label: 'UI/UX Design', active: false },
-		{ icon: 'shield', label: 'Cybersecurity', active: false }
-	];
+	let activeCategory = $state('All Articles');
 
-	const tags = ['React', 'Python', 'AI', 'DevOps', 'Figma', 'Security'];
+	const categoryIcons: Record<string, string> = {
+		'Web Development': 'code',
+		'UI/UX Design': 'palette',
+		'Cybersecurity': 'shield',
+		'Data Science': 'database'
+	};
+
+	let categories = $derived(() => {
+		const cats = [...new Set(data.articles.map((a: any) => a.category))];
+		return [
+			{ icon: 'article', label: 'All Articles' },
+			...cats.map((c: string) => ({ icon: categoryIcons[c] || 'folder', label: c }))
+		];
+	});
+
+	let allTags = $derived(() => {
+		const tagSet = new Set<string>();
+		data.articles.forEach((a: any) => a.tags?.forEach((t: string) => tagSet.add(t)));
+		return [...tagSet];
+	});
+
+	let filteredArticles = $derived(() => {
+		if (activeCategory === 'All Articles') return data.articles;
+		return data.articles.filter((a: any) => a.category === activeCategory);
+	});
 </script>
 
 <svelte:head>
@@ -30,25 +48,25 @@
 					<p class="text-slate-500 dark:text-slate-400 text-xs">Explore by core topic</p>
 				</div>
 				<nav class="space-y-1">
-					{#each categories as cat}
-						<a
-							href="/blog"
-							class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors
-							{cat.active
+					{#each categories() as cat}
+						<button
+							onclick={() => (activeCategory = cat.label)}
+							class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors w-full text-left cursor-pointer
+							{activeCategory === cat.label
 								? 'bg-primary text-white font-medium'
 								: 'hover:bg-slate-200 dark:hover:bg-slate-800 group'}"
 						>
 							<span
-								class="material-symbols-outlined text-xl {cat.active
+								class="material-symbols-outlined text-xl {activeCategory === cat.label
 									? ''
 									: 'text-slate-500 dark:text-slate-400 group-hover:text-primary'}"
 								>{cat.icon}</span
 							>
 							<span
-								class="text-sm {cat.active ? '' : 'text-slate-700 dark:text-slate-300'}"
+								class="text-sm {activeCategory === cat.label ? '' : 'text-slate-700 dark:text-slate-300'}"
 								>{cat.label}</span
 							>
-						</a>
+						</button>
 					{/each}
 				</nav>
 			</section>
@@ -57,12 +75,12 @@
 				<h3
 					class="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase tracking-wider mb-4"
 				>
-					Trending Tags
+					Tags
 				</h3>
 				<div class="flex flex-wrap gap-2">
-					{#each tags as tag}
+					{#each allTags() as tag}
 						<span
-							class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-full text-xs font-medium hover:bg-primary/20 hover:text-primary cursor-pointer transition-colors"
+							class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300"
 						>
 							{tag}
 						</span>
@@ -77,15 +95,17 @@
 				<h1
 					class="text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight"
 				>
-					Latest Articles
+					{activeCategory === 'All Articles' ? 'Latest Articles' : activeCategory}
 				</h1>
 				<p class="text-slate-500 dark:text-slate-400 mt-2">
-					Discover the latest industry trends and deep dives.
+					{activeCategory === 'All Articles'
+						? 'Discover the latest industry trends and deep dives.'
+						: `${filteredArticles().length} article${filteredArticles().length !== 1 ? 's' : ''} in ${activeCategory}`}
 				</p>
 			</div>
 
 			<div class="space-y-10">
-				{#each data.articles as article}
+				{#each filteredArticles() as article}
 					<article class="flex flex-col md:flex-row gap-6 group">
 						<a href="/blog/{article.slug}" class="w-full md:w-72 h-48 shrink-0 overflow-hidden rounded-xl block">
 							<div
