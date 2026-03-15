@@ -7,6 +7,7 @@
 	let headings: { id: string; text: string }[] = $state([]);
 	let activeId = $state('');
 	let copied = $state(false);
+	let clicking = false;
 
 	$effect(() => {
 		const article = document.querySelector('article');
@@ -20,6 +21,7 @@
 
 		const observer = new IntersectionObserver(
 			(entries) => {
+				if (clicking) return;
 				for (const entry of entries) {
 					if (entry.isIntersecting) {
 						activeId = entry.target.id;
@@ -173,7 +175,7 @@
 								<li>
 									<a
 										href="#{heading.id}"
-										onclick={(e) => { e.preventDefault(); activeId = heading.id; document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' }); }}
+										onclick={(e) => { e.preventDefault(); clicking = true; activeId = heading.id; document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' }); setTimeout(() => { clicking = false; }, 800); }}
 										class="block py-1 transition-colors no-underline {activeId === heading.id
 											? 'text-primary border-l-2 border-primary pl-3 -ml-[2px]'
 											: 'hover:text-primary'}"
