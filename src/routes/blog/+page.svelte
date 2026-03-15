@@ -87,14 +87,14 @@
 			<div class="space-y-10">
 				{#each data.articles as article}
 					<article class="flex flex-col md:flex-row gap-6 group">
-						<div class="w-full md:w-72 h-48 shrink-0 overflow-hidden rounded-xl">
+						<a href="/blog/{article.slug}" class="w-full md:w-72 h-48 shrink-0 overflow-hidden rounded-xl block">
 							<div
 								class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-110"
 								style="background-image: url('{article.coverImage}');"
 								role="img"
 								aria-label={article.title}
 							></div>
-						</div>
+						</a>
 						<div class="flex flex-col justify-center gap-3">
 							<div
 								class="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-primary"
@@ -103,11 +103,13 @@
 								<span class="w-1 h-1 rounded-full bg-slate-400"></span>
 								<span class="text-slate-500">{article.readTime}</span>
 							</div>
-							<h2
-								class="text-2xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors leading-tight"
-							>
-								{article.title}
-							</h2>
+							<a href="/blog/{article.slug}" class="no-underline">
+								<h2
+									class="text-2xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors leading-tight"
+								>
+									{article.title}
+								</h2>
+							</a>
 							<p
 								class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2 leading-relaxed"
 							>
@@ -126,7 +128,7 @@
 								>
 								<a
 									href="/blog/{article.slug}"
-									class="ml-auto flex items-center gap-1 text-primary text-xs font-bold hover:underline"
+									class="ml-auto flex items-center gap-1 text-primary text-xs font-bold hover:opacity-80 transition-opacity no-underline"
 								>
 									Read More
 									<span class="material-symbols-outlined text-sm">arrow_forward</span>

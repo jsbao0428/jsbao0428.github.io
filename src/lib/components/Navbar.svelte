@@ -13,7 +13,7 @@
 <header
 	class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md"
 >
-	<div class="max-w-[960px] mx-auto flex items-center justify-between px-4 md:px-10 py-4">
+	<div class="max-w-[1280px] mx-auto flex items-center justify-between px-4 lg:px-10 py-4">
 		<a href="/" class="flex items-center gap-4">
 			<div class="text-primary flex items-center justify-center">
 				<span class="material-symbols-outlined text-3xl">deployed_code</span>

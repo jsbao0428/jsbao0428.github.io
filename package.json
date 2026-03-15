@@ -18,5 +18,9 @@
     "typescript": "^5.7.0",
     "vite": "^6.1.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "rehype-slug": "^6.0.0"
+  }
 }
