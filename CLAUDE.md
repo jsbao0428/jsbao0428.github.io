@@ -28,12 +28,15 @@ Tailwind v4 CSS-first config in `src/app.css`. Primary: `#0d59f2`, fonts: Inter 
 
 Dark mode uses `darkMode: 'class'` — toggled on `<html>` element, persisted to localStorage, with FOUC prevention script in `src/app.html`.
 
+FOUC prevention: `src/app.html` contains inline `<style>` to hide Material Symbols icons (`visibility: hidden`) until fonts are loaded (`.fonts-loaded` class added via `document.fonts.ready`).
+
 ## Blog System
 
-Articles are Markdown files in `src/content/articles/` with YAML frontmatter (title, slug, date, author, category, tags, excerpt, coverImage, readTime).
+Articles are Markdown files in `src/content/articles/` with YAML frontmatter (title, slug, date, author, category, tags, excerpt, coverImage, readTime, draft).
 
-- **List page** (`src/routes/blog/+page.ts`): loads all articles via `import.meta.glob()`, sorts by date
-- **Detail page** (`src/routes/blog/[slug]/+page.ts`): dynamic import by slug, `entries()` function generates static routes for prerendering
+- **Draft mode**: Set `draft: true` in frontmatter to hide an article from all pages (homepage, blog list, blog detail, prerender). Omitting `draft` or setting `draft: false` means the article is published.
+- **List page** (`src/routes/blog/+page.ts`): loads all articles via `import.meta.glob()`, filters out examples and drafts, sorts by date
+- **Detail page** (`src/routes/blog/[slug]/+page.ts`): dynamic import by slug, `entries()` function generates static routes for prerendering (excludes drafts)
 - mdsvex compiles `.md` → Svelte components; metadata available as `module.metadata`, content as `module.default`
 
 ## Svelte 5 Conventions
