@@ -135,7 +135,8 @@
 			<article
 				class="prose prose-slate dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed text-lg
 				prose-headings:text-slate-900 dark:prose-headings:text-slate-100 prose-headings:font-bold
-				prose-a:text-primary prose-blockquote:border-primary prose-blockquote:bg-primary/5 prose-blockquote:p-6 prose-blockquote:rounded-r-lg"
+				prose-a:text-primary prose-blockquote:border-primary prose-blockquote:bg-primary/5 prose-blockquote:p-6 prose-blockquote:rounded-r-lg
+				prose-h2:scroll-mt-20"
 			>
 				{@render data.content()}
 			</article>
@@ -172,6 +173,7 @@
 								<li>
 									<a
 										href="#{heading.id}"
+										onclick={(e) => { e.preventDefault(); activeId = heading.id; document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' }); }}
 										class="block py-1 transition-colors no-underline {activeId === heading.id
 											? 'text-primary border-l-2 border-primary pl-3 -ml-[2px]'
 											: 'hover:text-primary'}"
