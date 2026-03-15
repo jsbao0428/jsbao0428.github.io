@@ -102,6 +102,31 @@
 			</div>
 		</div>
 
+		<!-- Highlights Section -->
+		<div class="mb-10 pt-4 border-t border-slate-200 dark:border-slate-800">
+			<h2 class="text-slate-900 dark:text-slate-100 text-[22px] font-bold leading-tight tracking-tight mb-6">
+				Highlights
+			</h2>
+			<div class="flex flex-col gap-6">
+				{#each profile.highlights as hl}
+					<div class="flex justify-between items-start">
+						<div>
+							{#if hl.href}
+								<a href={hl.href} target="_blank" rel="noopener noreferrer" class="text-slate-900 dark:text-slate-100 text-base font-bold hover:text-primary transition-colors">
+									{hl.title}
+									<span class="material-symbols-outlined align-middle" style="font-size: 14px;">open_in_new</span>
+								</a>
+							{:else}
+								<p class="text-slate-900 dark:text-slate-100 text-base font-bold">{hl.title}</p>
+							{/if}
+							<p class="text-slate-500 dark:text-slate-400 text-sm">{hl.event}</p>
+						</div>
+						<p class="text-slate-500 dark:text-slate-400 text-sm">{hl.period}</p>
+					</div>
+				{/each}
+			</div>
+		</div>
+
 		<!-- Education Section -->
 		<div class="mb-10 pt-4 border-t border-slate-200 dark:border-slate-800">
 			<h2 class="text-slate-900 dark:text-slate-100 text-[22px] font-bold leading-tight tracking-tight mb-6">

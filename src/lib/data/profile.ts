@@ -59,6 +59,10 @@ export const profile = {
 		{ icon: 'open_in_new', label: 'LinkedIn', href: 'https://www.linkedin.com/in/jsbao', external: true },
 		{ icon: 'code', label: 'GitHub', href: 'https://github.com/jsbao0428', external: true }
 	],
+	highlights: [
+		{ title: 'Speaker (Talk & Tutorial)', event: '2022 PyCon APAC', period: 'Sep 2022', href: 'https://tw.pycon.org/2022/zh-hant/conference/talk/237' },
+		{ title: 'Lecturer', event: 'Happy Coding Online Course', period: '2020' }
+	],
 	education: [
 		{
 			degree: 'B.S. Big Data Management',
