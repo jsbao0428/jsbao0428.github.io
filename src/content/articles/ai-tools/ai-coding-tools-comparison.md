@@ -16,7 +16,7 @@ readTime: 10 min read
 
 ## 前言
 
-2024-2025 年，AI 工具百花齊放。從對話式 AI 到 IDE 整合，再到 CLI Agent，開發者有了前所未有的選擇。這篇文章整理我在評估各類工具後，最終選擇 Claude Code 的思考過程。
+2024-2025 年，AI Coding 工具百花齊放。從對話式 AI 到 IDE 整合，再到 CLI Agent，開發者有了前所未有的選擇。這篇文章整理我在評估各類工具後，最終選擇 Claude Code 的思考過程。
 
 ---
 
