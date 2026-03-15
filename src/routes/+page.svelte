@@ -66,6 +66,7 @@
 			<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">
 				Selected Projects
 			</h3>
+			<a class="text-primary text-sm font-semibold hover:opacity-80 transition-opacity no-underline" href="/work">View All</a>
 		</div>
 
 		<!-- Projects Grid -->

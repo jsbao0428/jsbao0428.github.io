@@ -11,6 +11,9 @@
 				const theme = localStorage.getItem('theme');
 				if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
 					document.documentElement.classList.add('dark');
+					document.documentElement.style.backgroundColor = '#101622';
+				} else {
+					document.documentElement.style.backgroundColor = '#f5f6f8';
 				}
 				document.fonts.ready.then(function () {
 					document.documentElement.classList.add('fonts-loaded');
