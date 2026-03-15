@@ -7,6 +7,24 @@
 - **WHEN** 使用者造訪 `/about` 頁面
 - **THEN** 顯示圓形大頭照、姓名、職稱、地點資訊
 
+### Requirement: Download Resume button triggers file download
+The About page SHALL render a "Download Resume" link that downloads the resume PDF file when clicked.
+
+#### Scenario: User clicks Download Resume
+- **WHEN** the user clicks the "Download Resume" button on the About page
+- **THEN** the browser SHALL initiate a download of `Resume_DE.pdf`
+
+#### Scenario: Button renders as anchor element
+- **WHEN** the About page loads
+- **THEN** the "Download Resume" button SHALL be rendered as an `<a>` element with `href="/Resume_DE.pdf"` and a `download` attribute
+
+### Requirement: Contact Me button triggers contact popover
+The About page SHALL render a "Contact Me" button that opens a ContactPopover component on click.
+
+#### Scenario: User clicks Contact Me
+- **WHEN** the user clicks the "Contact Me" button on the About page
+- **THEN** the ContactPopover SHALL appear with available contact channels
+
 ### Requirement: 統計數據展示
 頁面 SHALL 顯示統計數據卡片（如年資、專案數、獎項數），以三欄 grid 排列。
 
