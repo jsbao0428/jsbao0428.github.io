@@ -1,7 +1,10 @@
 <script lang="ts">
 	import StatCard from '$lib/components/StatCard.svelte';
 	import TimelineItem from '$lib/components/TimelineItem.svelte';
+	import ContactPopover from '$lib/components/ContactPopover.svelte';
 	import { profile } from '$lib/data/profile';
+
+	let contactOpen = $state(false);
 </script>
 
 <svelte:head>
@@ -15,8 +18,8 @@
 			<div class="flex w-full flex-col gap-6 items-center">
 				<div class="flex gap-6 flex-col items-center">
 					<div
-						class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-32 w-32 ring-4 ring-primary/20 shadow-xl bg-slate-300 dark:bg-slate-700"
-						style={profile.avatar ? `background-image: url('${profile.avatar}');` : ''}
+						class="bg-no-repeat aspect-square bg-cover rounded-full h-32 w-32 ring-4 ring-primary/20 shadow-xl bg-slate-300 dark:bg-slate-700"
+						style={profile.avatar ? `background-image: url('${profile.avatar}'); background-position: 75% 30%;` : ''}
 						role="img"
 						aria-label={profile.name}
 					></div>
@@ -34,17 +37,23 @@
 					</div>
 				</div>
 				<div class="flex gap-3 w-full max-w-[480px]">
-					<button
-						class="flex flex-1 items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold hover:opacity-90 transition-opacity cursor-pointer"
-					>
-						Contact Me
-					</button>
-					<button
+					<div class="relative flex flex-1 contact-popover-container">
+						<button
+							onclick={() => (contactOpen = !contactOpen)}
+							class="flex flex-1 items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold hover:opacity-90 transition-opacity cursor-pointer"
+						>
+							Contact Me
+						</button>
+						<ContactPopover contacts={profile.contacts} bind:open={contactOpen} />
+					</div>
+					<a
+						href="/Resume_DE.pdf"
+						download
 						class="flex flex-1 items-center justify-center rounded-lg h-12 px-6 bg-primary/10 dark:bg-primary/20 text-primary text-sm font-bold border border-primary/30 hover:bg-primary/30 transition-colors cursor-pointer"
 					>
 						<span class="material-symbols-outlined mr-2">download</span>
 						Download Resume
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>
