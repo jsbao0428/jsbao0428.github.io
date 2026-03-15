@@ -2,7 +2,9 @@ import type { PageLoad } from './$types';
 
 const allModules = import.meta.glob('/src/content/articles/**/*.md', { eager: true });
 const articleModules = Object.fromEntries(
-	Object.entries(allModules).filter(([path]) => !path.includes('/examples/'))
+	Object.entries(allModules)
+		.filter(([path]) => !path.includes('/examples/'))
+		.filter(([, module]: [string, any]) => (module as any).metadata?.draft !== true)
 );
 
 function findBySlug(slug: string): any {

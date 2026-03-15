@@ -5,6 +5,7 @@ export const load: PageLoad = async () => {
 
 	const articles = Object.entries(articleModules)
 		.filter(([path]) => !path.includes('/examples/'))
+		.filter(([, module]: [string, any]) => (module as any).metadata?.draft !== true)
 		.map(([, module]: [string, any]) => ({
 			...module.metadata
 		}))

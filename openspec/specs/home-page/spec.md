@@ -8,7 +8,7 @@
 - **THEN** 顯示大標題文字，其中關鍵詞以 primary 色彩標示
 
 ### Requirement: 首頁顯示最近文章
-首頁 SHALL 在 Hero 區塊與 Selected Projects 區塊之間顯示「Recent Articles」區塊，列出最新的 3 篇文章（排除 examples 資料夾）。
+首頁 SHALL 在 Hero 區塊與 Selected Projects 區塊之間顯示「Recent Articles」區塊，列出最新的 3 篇文章（排除 examples 資料夾）。載入時 SHALL 排除 `draft: true` 的文章。
 
 #### Scenario: 最近文章渲染
 - **WHEN** 使用者造訪首頁

@@ -36,11 +36,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="flex gap-3 w-full max-w-[480px]">
-					<div class="relative flex flex-1 contact-popover-container">
+				<div class="grid grid-cols-2 gap-3 w-full max-w-[480px]">
+					<div class="relative flex contact-popover-container">
 						<button
 							onclick={() => (contactOpen = !contactOpen)}
-							class="flex flex-1 items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold hover:opacity-90 transition-opacity cursor-pointer"
+							class="flex w-full items-center justify-center rounded-lg h-12 px-4 bg-primary text-white text-sm font-bold hover:opacity-90 transition-opacity cursor-pointer"
 						>
 							Contact Me
 						</button>
@@ -49,7 +49,7 @@
 					<a
 						href="/Resume_DE.pdf"
 						download
-						class="flex flex-1 items-center justify-center rounded-lg h-12 px-6 bg-primary/10 dark:bg-primary/20 text-primary text-sm font-bold border border-primary/30 hover:bg-primary/30 transition-colors cursor-pointer"
+						class="flex items-center justify-center rounded-lg h-12 px-4 bg-primary/10 dark:bg-primary/20 text-primary text-sm font-bold border border-primary/30 hover:bg-primary/30 transition-colors cursor-pointer"
 					>
 						<span class="material-symbols-outlined mr-2">download</span>
 						Download Resume

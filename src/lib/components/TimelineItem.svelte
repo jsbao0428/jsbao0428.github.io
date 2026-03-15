@@ -34,14 +34,14 @@
 		{/if}
 	</div>
 	<div class="flex flex-1 flex-col {last ? 'pt-1' : 'pb-8 pt-1'}">
-		<div class="flex justify-between items-start">
+		<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start">
 			<div>
 				<p class="text-slate-900 dark:text-slate-100 text-lg font-bold">
 					{role} at {company}
 				</p>
 				<p class="text-primary text-sm font-semibold mt-1">{type} &bull; {location}</p>
 			</div>
-			<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">{period}</p>
+			<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mt-1 sm:mt-0 sm:shrink-0 sm:ml-4">{period}</p>
 		</div>
 		<p class="text-slate-600 dark:text-slate-400 text-base mt-3 leading-relaxed">
 			{description}
