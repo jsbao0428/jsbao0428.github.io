@@ -1,6 +1,9 @@
 import type { PageLoad } from './$types';
 
-const articleModules = import.meta.glob('/src/content/articles/**/*.md', { eager: true });
+const allModules = import.meta.glob('/src/content/articles/**/*.md', { eager: true });
+const articleModules = Object.fromEntries(
+	Object.entries(allModules).filter(([path]) => !path.includes('/examples/'))
+);
 
 function findBySlug(slug: string): any {
 	for (const mod of Object.values(articleModules)) {

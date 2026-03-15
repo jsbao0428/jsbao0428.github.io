@@ -15,11 +15,11 @@ interface ArticleMeta {
 export const load: PageLoad = async () => {
 	const articleModules = import.meta.glob('/src/content/articles/**/*.md', { eager: true });
 
-	const articles: ArticleMeta[] = Object.entries(articleModules).map(
-		([, module]: [string, any]) => ({
+	const articles: ArticleMeta[] = Object.entries(articleModules)
+		.filter(([path]) => !path.includes('/examples/'))
+		.map(([, module]: [string, any]) => ({
 			...module.metadata
-		})
-	);
+		}));
 
 	articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 

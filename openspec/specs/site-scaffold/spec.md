@@ -31,3 +31,17 @@
 #### Scenario: 所有路由產生對應 HTML
 - **WHEN** 執行 build
 - **THEN** 每個路由（`/`、`/about`、`/blog`、`/blog/[slug]`）都產生獨立的 HTML 檔案
+
+### Requirement: 錯誤頁面
+系統 SHALL 提供客製化錯誤頁面（`+error.svelte`），顯示友善的錯誤訊息和返回首頁按鈕。
+
+#### Scenario: 404 頁面顯示
+- **WHEN** 使用者造訪不存在的頁面
+- **THEN** 顯示 "Page Not Found" 訊息、說明文字、和 "Back to Home" 按鈕
+
+### Requirement: 導覽列
+系統 SHALL 在頂部顯示 sticky 導覽列，包含 Logo、導覽連結（Home、Blog、Work、About）和主題切換按鈕。
+
+#### Scenario: 導覽連結正確
+- **WHEN** 頁面載入
+- **THEN** 導覽列顯示 Home（`/`）、Blog（`/blog`）、Work（`/work`）、About（`/about`）四個連結

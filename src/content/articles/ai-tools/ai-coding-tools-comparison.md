@@ -10,7 +10,7 @@ tags:
   - Cursor
   - CLI Agent
 excerpt: 2024-2025 年 AI 編程工具百花齊放。這篇文章整理我在評估各類工具後，最終選擇 Claude Code 的思考過程。
-coverImage: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80
+coverImage: https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&q=80
 readTime: 10 min read
 ---
 

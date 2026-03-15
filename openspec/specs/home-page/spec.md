@@ -7,6 +7,21 @@
 - **WHEN** 使用者造訪首頁 (`/`)
 - **THEN** 顯示大標題文字，其中關鍵詞以 primary 色彩標示
 
+### Requirement: 首頁顯示最近文章
+首頁 SHALL 在 Hero 區塊與 Selected Projects 區塊之間顯示「Recent Articles」區塊，列出最新的 3 篇文章（排除 examples 資料夾）。
+
+#### Scenario: 最近文章渲染
+- **WHEN** 使用者造訪首頁
+- **THEN** Hero 下方顯示最新 3 篇文章，每篇包含封面圖、分類、標題、摘要、日期
+
+#### Scenario: View All 連結
+- **WHEN** 使用者點擊 Recent Articles 區塊的「View All」連結
+- **THEN** 導覽至 `/blog` 頁面
+
+#### Scenario: 文章可點擊
+- **WHEN** 使用者點擊文章標題或封面圖
+- **THEN** 導覽至 `/blog/[slug]` 文章詳情頁
+
 ### Requirement: 專案作品展示
 首頁 SHALL 展示精選專案作品卡片，每張卡片包含封面圖、標題、類別標籤、描述、和「View Project」按鈕。
 

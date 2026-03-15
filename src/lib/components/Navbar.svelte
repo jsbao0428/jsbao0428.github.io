@@ -4,9 +4,10 @@
 	let menuOpen = $state(false);
 
 	const links = [
-		{ href: '/', label: 'Work' },
-		{ href: '/about', label: 'About' },
-		{ href: '/blog', label: 'Blog' }
+		{ href: '/', label: 'Home' },
+		{ href: '/blog', label: 'Blog' },
+		{ href: '/work', label: 'Work' },
+		{ href: '/about', label: 'About' }
 	];
 </script>
 
@@ -19,7 +20,7 @@
 				<span class="material-symbols-outlined text-3xl">deployed_code</span>
 			</div>
 			<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">
-				Portfolio
+				jsbao
 			</h2>
 		</a>
 
