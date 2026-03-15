@@ -20,7 +20,7 @@
 
 {#if open}
 	<div
-		class="contact-popover-container absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-2 min-w-[220px] z-50"
+		class="contact-popover-container absolute top-full left-0 mt-2 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-2 min-w-[220px] z-50"
 	>
 		{#each contacts as contact}
 			{#if contact.copyValue}

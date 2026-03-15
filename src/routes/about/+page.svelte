@@ -49,10 +49,10 @@
 					<a
 						href="/Resume_DE.pdf"
 						download
-						class="flex items-center justify-center rounded-lg h-12 px-4 bg-primary/10 dark:bg-primary/20 text-primary text-sm font-bold border border-primary/30 hover:bg-primary/30 transition-colors cursor-pointer"
+						class="flex items-center justify-center rounded-lg h-12 px-4 bg-primary/10 dark:bg-primary/20 text-primary text-sm font-bold border border-primary/30 hover:bg-primary/30 transition-colors cursor-pointer whitespace-nowrap"
 					>
-						<span class="material-symbols-outlined mr-2">download</span>
-						Download Resume
+						<span class="material-symbols-outlined mr-1.5 text-lg">download</span>
+						Resume
 					</a>
 				</div>
 			</div>
