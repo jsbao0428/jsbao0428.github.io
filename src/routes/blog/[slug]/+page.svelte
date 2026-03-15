@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Comment from '$lib/components/Comment.svelte';
+
 	let { data } = $props();
 	let metadata = $derived(data.metadata);
 </script>
@@ -88,6 +90,11 @@
 		>
 			{@render data.content()}
 		</article>
+
+		<!-- Comments -->
+		<div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800">
+			<Comment />
+		</div>
 
 		<!-- Back to Blog -->
 		<div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800">
