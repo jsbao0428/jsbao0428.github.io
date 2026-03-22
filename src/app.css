@@ -14,6 +14,11 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Prevent long inline code from causing horizontal overflow on mobile */
+.prose :where(code):not(:where(pre code)) {
+	overflow-wrap: anywhere;
+}
+
 /* Shiki dual theme: light/dark mode switching */
 .shiki,
 .shiki span {
