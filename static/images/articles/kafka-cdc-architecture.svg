@@ -1,0 +1,50 @@
+<svg width="100%" viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', -apple-system, system-ui, sans-serif">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- Kafka Connect Worker boundary -->
+<rect x="168" y="8" width="440" height="158" rx="10" fill="none" stroke="rgb(160, 160, 155)" stroke-width="0.8" stroke-dasharray="6 3"/>
+<text x="388" y="154" text-anchor="middle" font-size="11" font-weight="500" fill="rgb(140, 140, 135)">Kafka Connect Worker (:8083)</text>
+
+<!-- MySQL Source -->
+<rect x="8" y="46" width="128" height="64" rx="8" fill="rgb(12, 68, 124)" stroke="rgb(133, 183, 235)" stroke-width="0.5"/>
+<text x="72" y="72" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="rgb(181, 212, 244)">MySQL Source</text>
+<text x="72" y="92" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(133, 183, 235)">:3307</text>
+
+<!-- Arrow: Source DB → Source Connector -->
+<line x1="136" y1="78" x2="190" y2="78" stroke="rgb(140, 140, 135)" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="163" y="69" text-anchor="middle" font-size="10" fill="rgb(140, 140, 135)">binlog</text>
+
+<!-- Source Connector (Debezium) -->
+<rect x="194" y="46" width="136" height="64" rx="8" fill="rgb(8, 80, 65)" stroke="rgb(93, 202, 165)" stroke-width="0.5"/>
+<text x="262" y="70" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="rgb(159, 225, 203)">Source Connector</text>
+<text x="262" y="90" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(93, 202, 165)">Debezium</text>
+
+<!-- Arrow: Source Connector → Kafka -->
+<line x1="330" y1="78" x2="360" y2="78" stroke="rgb(140, 140, 135)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- Kafka Broker -->
+<rect x="364" y="38" width="92" height="80" rx="40" fill="rgb(113, 43, 19)" stroke="rgb(240, 153, 123)" stroke-width="0.8"/>
+<text x="410" y="72" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="rgb(245, 196, 179)">Kafka</text>
+<text x="410" y="90" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(240, 153, 123)">Broker</text>
+
+<!-- Arrow: Kafka → Sink Connector -->
+<line x1="456" y1="78" x2="486" y2="78" stroke="rgb(140, 140, 135)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- Sink Connector (JDBC Sink) -->
+<rect x="490" y="46" width="136" height="64" rx="8" fill="rgb(8, 80, 65)" stroke="rgb(93, 202, 165)" stroke-width="0.5"/>
+<text x="558" y="70" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="rgb(159, 225, 203)">Sink Connector</text>
+<text x="558" y="90" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(93, 202, 165)">JDBC Sink</text>
+
+<!-- Arrow: Sink Connector → Sink DB -->
+<line x1="626" y1="78" x2="660" y2="78" stroke="rgb(140, 140, 135)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- MySQL Sink -->
+<rect x="664" y="46" width="128" height="64" rx="8" fill="rgb(12, 68, 124)" stroke="rgb(133, 183, 235)" stroke-width="0.5"/>
+<text x="728" y="72" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="rgb(181, 212, 244)">MySQL Sink</text>
+<text x="728" y="92" text-anchor="middle" dominant-baseline="central" font-size="11" fill="rgb(133, 183, 235)">:3308</text>
+
+</svg>
