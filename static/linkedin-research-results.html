@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣人海外研究所畢業後就業研究</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --card: #334155;
+    --card-hover: #3b4d6b;
+    --accent: #38bdf8;
+    --accent2: #818cf8;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --green: #34d399;
+    --orange: #fb923c;
+    --border: #475569;
+    --linkedin: #0a66c2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  header .date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .stat-card h3 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-label { color: var(--text-secondary); font-size: 0.9rem; }
+  .stat-value { font-size: 1.5rem; font-weight: 700; }
+  .stat-value.stay { color: var(--green); }
+  .stat-value.return { color: var(--orange); }
+
+  .stat-bar {
+    height: 8px;
+    background: var(--card);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+
+  .stat-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  .stat-bar-fill.stay { background: var(--green); }
+  .stat-bar-fill.return { background: var(--orange); }
+
+  /* School Sections */
+  .school-section {
+    margin-bottom: 3rem;
+  }
+
+  .school-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .school-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .school-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  .badge-ucsd { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
+  .badge-uva { background: rgba(129, 140, 248, 0.15); color: var(--accent2); }
+
+  .subsection {
+    margin-bottom: 2rem;
+  }
+
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .subsection-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-stay { background: var(--green); }
+  .dot-return { background: var(--orange); }
+
+  /* Cards */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  .person-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid transparent;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .person-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--linkedin);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .linkedin-btn:hover { opacity: 0.85; }
+
+  .linkedin-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  .card-detail {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .card-detail .label {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .card-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.05);
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+  }
+
+  /* Placeholder */
+  .placeholder {
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .placeholder .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Broad match cards */
+  .person-card.broad-match {
+    opacity: 0.7;
+    border: 1px dashed var(--border);
+  }
+  .person-card.broad-match:hover {
+    opacity: 0.9;
+    border-color: var(--accent2);
+  }
+
+  .card-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .tag-broad { background: rgba(129,140,248,0.2); color: var(--accent2); }
+  .tag-enrolled { background: rgba(251,146,60,0.2); color: var(--orange); }
+
+  .field-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-weight: 600;
+    white-space: nowrap;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+  }
+  .field-ds { background: rgba(56,189,248,0.18); color: #38bdf8; }
+  .field-ml { background: rgba(168,85,247,0.18); color: #a855f7; }
+  .field-ai { background: rgba(52,211,153,0.18); color: #34d399; }
+  .field-swe { background: rgba(99,102,241,0.18); color: #818cf8; }
+  .field-da { background: rgba(251,191,36,0.18); color: #fbbf24; }
+  .field-de { background: rgba(244,114,182,0.18); color: #f472b6; }
+
+  /* Enrolled cards */
+  .person-card.enrolled {
+    border: 2px dashed var(--border);
+    background: rgba(51,65,85,0.5);
+  }
+  .person-card.enrolled:hover {
+    border-color: var(--orange);
+  }
+
+  /* No results */
+  .no-results {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  /* Analysis section */
+  .analysis-section {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .analysis-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .analysis-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .analysis-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .analysis-card li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(71,85,105,0.4);
+    line-height: 1.5;
+  }
+
+  .analysis-card li:last-child { border-bottom: none; }
+
+  .analysis-card li::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 0.6rem;
+    vertical-align: middle;
+  }
+
+  /* Nationality tag */
+  .nationality-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 0.35rem;
+    vertical-align: middle;
+  }
+  .nat-india { background: rgba(255,153,51,0.18); color: #ff9933; }
+  .nat-china { background: rgba(222,41,16,0.18); color: #ee4433; }
+  .nat-korea { background: rgba(0,71,160,0.18); color: #4d94ff; }
+  .nat-indonesia { background: rgba(206,17,38,0.18); color: #34d399; }
+
+  .section-divider {
+    border: none;
+    border-top: 2px solid var(--border);
+    margin: 2rem 0 2.5rem;
+  }
+
+  .intl-section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .intl-section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 1rem; }
+    header h1 { font-size: 1.4rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>台灣人海外研究所畢業後就業研究</h1>
+    <p class="date">更新日期：2026-04-07</p>
+  </header>
+  <div id="stats"></div>
+  <div id="app"></div>
+  <div id="intl"></div>
+</div>
+
+<script>
+// ===== DATA =====
+const data = {
+  schools: [
+    {
+      id: 'ucsd',
+      name: 'UCSD',
+      fullName: 'University of California San Diego',
+      field: 'DS / CS 領域',
+      badgeClass: 'badge-ucsd',
+      stayLabel: '留在美國工作',
+      returnLabel: '回台灣工作',
+      stay: [
+        {
+          name: '連依 (Yi Lien)',
+          field: 'Data Science',
+          degree: 'MS in Data Science (2024/9 – 2026/3), GPA 3.9',
+          undergrad: '國立臺灣大學 國際企業學系 BBA (2019–2023)',
+          current: 'Data Scientist @ Princess Cruises (2025/6 起)',
+          location: '洛杉磯地區',
+          prev: null,
+          note: null,
+          linkedin: 'yi-lien'
+        },
+        {
+          name: 'Yu-Pao Tu (杜宇保)',
+          field: 'Machine Learning',
+          degree: 'MS in Computer Science and Engineering (2024/9 – 2026/6)',
+          undergrad: '國立臺灣大學 會計學系 BBA (2016–2021)',
+          current: 'MLE @ IBM Silicon Valley Lab',
+          location: '加州 Los Altos',
+          prev: null,
+          note: '轉職背景，曾在 Deloitte、中研院資訊所工作',
+          linkedin: 'yu-pao-tu'
+        },
+        {
+          name: 'Michael Lee',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in Computer Science (2021/9 – 2023/3), GPA 3.9, AI Track',
+          undergrad: '國立成功大學 統計學系 (2016–2021)',
+          current: 'Software Engineer @ NVIDIA (2025/10 起)',
+          location: '加州 Santa Clara',
+          prev: 'Software Engineer @ MediaTek, San Diego (2023/5 – 2025/10)',
+          note: null,
+          linkedin: 'michaelleee'
+        },
+        {
+          name: 'Pin-Ying Wu',
+          field: 'Machine Learning',
+          degree: 'MS in Electrical and Computer Engineering (2022/9 – 2024/3)',
+          undergrad: '國立臺灣大學 電機工程學系 BS (2018–2022)',
+          current: 'Machine Learning Engineer @ TSMC (2024/4 起)',
+          location: '加州 San Jose',
+          prev: null,
+          note: '專注 ML/Computer Vision，曾在 UCSD Statistical Visual Computing Lab 做研究',
+          linkedin: 'pin-ying-wu-83b876216'
+        },
+        {
+          name: 'Lin-Hsi (Ethen) Tsao (曹林禧)',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in ECE - Intelligent Systems, Robotics & Control (2022/9 – 2024/6)',
+          undergrad: '國立臺灣大學 電機工程學系 BS (2017–2021)',
+          current: 'Software Engineer @ Pony.ai (2025/7 – 2026/2, 自駕車)',
+          location: '加州 Fremont',
+          prev: 'Deep Learning Engineer @ Carbon Robotics, Seattle (2024/10 – 2025/6)',
+          note: 'Computer Vision 專長，有多篇 IEEE 論文',
+          linkedin: 'ethen-tsao'
+        },
+        {
+          name: 'Darren Li (李宗倫)',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in Computer Engineering',
+          undergrad: '國立臺灣大學 電機工程學系',
+          current: 'Software Engineer @ Qualcomm (2024/11 起)',
+          location: '加州 San Diego',
+          prev: null,
+          note: '在 Qualcomm 做 AI 驅動的晶片設計工具',
+          linkedin: 'zong-lun-darren-li'
+        },
+        {
+          name: 'Yung-Wei Yang',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in Computer Science (2023/6 – 2025/6)',
+          undergrad: '國立交通大學 資訊工程學系 (GPA 4.11/4.3)',
+          current: 'Software Engineer @ Microsoft (2025/2 起)',
+          location: '華盛頓州 Redmond',
+          prev: null,
+          note: 'Microsoft 實習後轉正',
+          linkedin: 'yyw-640550234'
+        },
+        {
+          name: 'Katherine Chu',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in Computer Science (2022/8 – 2023/12)',
+          undergrad: '國立臺灣大學 資訊管理學系 (GPA 3.89/4.3)',
+          current: 'Software Dev Engineer @ Amazon (2024/4 起)',
+          location: '華盛頓州 Bellevue',
+          prev: null,
+          note: 'Amazon 實習後轉正',
+          linkedin: 'katherine-chu-9775b8181'
+        },
+        {
+          name: 'Tsung-Hsiang Ma',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in ECE - ML&DS track (2023/9 – 2025/3), GPA 3.84',
+          undergrad: '國立臺灣大學 生物機電工程學系',
+          current: 'SDE @ AWS',
+          location: null,
+          prev: null,
+          note: '曾在 MediaTek USA 實習',
+          linkedin: 'tsung-hsiang-ma-b895421b8'
+        },
+        {
+          name: 'Po-Chun Wu (吳柏群)',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in Computer Science (2023/9 – 2025/6), GPA 3.95',
+          undergrad: '國立臺灣大學 資訊管理學系 (GPA 4.04/4.3)',
+          current: 'SDE @ AWS',
+          location: null,
+          prev: null,
+          note: 'NTU IM 畢業致辭代表',
+          linkedin: 'pochunwu2000'
+        },
+        {
+          name: 'Tung Yen Chiang (江東彥)',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in ECE - Intelligent Systems, Robotics & Control (2023/9 – 2025/6), GPA 3.71',
+          undergrad: '國立臺灣大學 機械工程學系',
+          current: 'Software Engineer @ Tensor Auto (2025/4 起, CV/Robotics 新創)',
+          location: '加州 San Jose',
+          prev: null,
+          note: '曾在工研院做 CV 和機器人視覺',
+          linkedin: 'tung-yen-chiang-745298236'
+        },
+        {
+          name: 'Jean Hsu',
+          field: 'Data Science',
+          degree: 'MS in Data Science (HDSI)',
+          undergrad: '國立政治大學 經濟統計系',
+          current: 'BI/Data Ops @ TSMC (Bay Area)',
+          location: 'Bay Area',
+          prev: null,
+          note: 'UCSD HDSI (Halıcıoğlu Data Science Institute) 畢業',
+          linkedin: 'jeanhsu7'
+        }
+      ],
+      return: [
+        {
+          name: 'Brian (Ting-Yang) Chou',
+          field: 'AI Engineering',
+          degree: 'MS in Computer Science and Engineering (2023/9 – 2025/3), GPA 3.75',
+          undergrad: '國立臺灣科技大學 工業管理系（副修 CS）',
+          current: 'AI Robotics Engineer @ TSMC (2025/6 起)',
+          location: '台灣',
+          prev: null,
+          note: 'UCSD 期間曾在 AMD 實習，畢業後回台加入台積電',
+          linkedin: 'tingyangchou'
+        },
+        {
+          name: 'Hao-Yuan T.',
+          field: 'Machine Learning',
+          degree: 'MS in Electrical and Computer Engineering (2021/6 – 2023/6), Signal and Image Processing track',
+          undergrad: null,
+          current: 'Senior Machine Learning Engineer @ HOMEE AI (2023/7 起)',
+          location: '台灣新北市',
+          prev: null,
+          note: '專攻 GenAI/LLM/Agents，畢業後直接回台',
+          linkedin: 'hao-yuan-t-2b37451ba'
+        },
+        {
+          name: 'Louis Lu',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in ECE - Machine Learning and Data Science track',
+          undergrad: '國立交通大學 電機資訊工程學系',
+          current: 'Senior DevOps Engineer @ TSMC (2025/10 起)',
+          location: '台灣',
+          prev: 'Build and Release Engineer @ Dolby Laboratories, San Francisco (2021/9 – 2024/5)',
+          note: '畢業後先在美國 Dolby 工作 3 年，再回台積電',
+          linkedin: 'louis910'
+        },
+        {
+          name: 'Shang-Wei Hung',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MS in ECE - Machine Learning and Data Science (2018 – 2020), GPA 3.75',
+          undergrad: '國立交通大學 電機資訊學院學士班榮譽課程',
+          current: 'Senior System Software Engineer @ MediaTek',
+          location: '台灣',
+          prev: null,
+          note: '專攻 Automotive Smart Cockpit / SoC System Integration',
+          linkedin: 'shangweihung'
+        },
+        {
+          name: 'Kevin Ho',
+          field: 'Data Analytics',
+          degree: 'MS in Business Analytics (2022/7 – 2023/12)',
+          undergrad: '輔仁大學 金融國際企業學系',
+          current: 'Associate Consultant @ Mastercard (2024/7 起)',
+          location: '台灣台北',
+          prev: null,
+          note: 'Business Analytics 偏商業分析，含 SQL/ETL/NLP/Spark',
+          linkedin: 'y6ho'
+        }
+      ]
+    },
+    {
+      id: 'uva',
+      name: 'University of Amsterdam',
+      fullName: 'University of Amsterdam',
+      field: 'Data Science 領域',
+      badgeClass: 'badge-uva',
+      stayLabel: '留在歐洲工作',
+      returnLabel: '回台灣工作',
+      stay: [
+        {
+          name: 'Will Chien',
+          field: 'AI Engineering',
+          degree: 'MSc Data Science (Cum Laude, GPA 8.4/10, 2020–2021)',
+          undergrad: '國立臺灣大學 獸醫系 (2011–2017)',
+          current: 'Senior AI Engineer / Data Scientist @ ING Bank (2025 起)',
+          location: '阿姆斯特丹',
+          prev: 'Medior AI Engineer @ ABN AMRO (2023–2024) → Full Stack Engineer @ Vitol 鹿特丹 (2024–2025)',
+          note: '曾獲 ING Global Hackathon 冠軍',
+          linkedin: 'willchien115'
+        },
+        {
+          name: 'Pan-Pan Wu',
+          field: 'Data Analytics',
+          degree: 'MSc Computational Science (GPA 7.8, 2019–2021), 課程含 ML、Data Mining',
+          undergrad: '國立交通大學 生物科學系 (2012–2016)',
+          current: 'ING ITP Analytics Trainee / Business Manager to WB Lending IT Lead (2022 起)',
+          location: '荷蘭',
+          prev: null,
+          note: '曾受邀回 UvA 校友活動演講',
+          linkedin: 'pan-pan-wu-103282161'
+        }
+      ],
+      broadMatch: [
+        {
+          name: 'Cyril Shih-Huan Hsu',
+          field: 'Machine Learning',
+          degree: 'PhD Computer Science (2021–2025), 研究方向 ML',
+          undergrad: '國立臺灣大學 電機碩士 + 生工學士',
+          current: 'ML Scientist / Postdoc @ UvA',
+          location: '阿姆斯特丹',
+          prev: null,
+          note: 'PhD 非碩士',
+          linkedin: 'shih-huan-hsu',
+          tag: 'PhD'
+        },
+        {
+          name: 'Eric Su (蘇庭超)',
+          field: 'Data Analytics',
+          degree: 'MBA in AI & Business Analytics @ Amsterdam Business School (2023–2025)',
+          undergrad: null,
+          current: null,
+          location: null,
+          prev: null,
+          note: 'MBA 而非 MSc，畢業後工作狀態不明',
+          linkedin: 'tingchaosu',
+          tag: 'MBA'
+        },
+        {
+          name: '杜詠聖 Yung-sheng Tu',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MSc Computer Science (UvA & VU Joint, 2022–2024)',
+          undergrad: '國立中山大學 資工系',
+          current: 'Software Performance Engineer @ Stream HPC',
+          location: '荷蘭',
+          prev: null,
+          note: 'UvA 與 VU 聯合碩士',
+          linkedin: 'yung-sheng-tu',
+          tag: 'Joint'
+        },
+        {
+          name: 'Hsuan Yu Liu (劉宣佑)',
+          field: 'Data Analytics',
+          degree: 'Master of Finance, Quantitative Finance Track (2019–2020, GPA 8.0)',
+          undergrad: '國立清華大學 計量財務金融系',
+          current: 'ALM Model Validator @ ABN AMRO',
+          location: '荷蘭',
+          prev: null,
+          note: 'Quantitative Finance，工作涉及模型驗證',
+          linkedin: 'hsuan-yu-liu-frm-scr-101b82170',
+          tag: 'Finance'
+        },
+        {
+          name: 'Chih-Chieh Lin',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MSc CS - Big Data Engineering (UvA-VU, 2020–2022)',
+          undergrad: '國立臺灣大學 物理系',
+          current: 'Software Engineer @ ING',
+          location: '阿姆斯特丹',
+          prev: null,
+          note: 'Big Data Engineering 背景',
+          linkedin: 'chih-chieh-lin',
+          tag: 'Joint'
+        },
+        {
+          name: 'Vincent Tseng',
+          field: 'Software Engineering (ML/Data)',
+          degree: 'MBA Business Information Systems (2012–2013)',
+          undergrad: '國立臺灣大學',
+          current: 'Software Developer @ TriFact365',
+          location: '荷蘭猶翠特',
+          prev: null,
+          note: 'Data/ML Software Developer',
+          linkedin: 'vincent-tseng',
+          tag: 'MBA'
+        },
+        {
+          name: 'Tennyson Wu',
+          field: 'Data Analytics',
+          degree: 'MBA Entrepreneurship (2019–2020)',
+          undergrad: null,
+          current: 'Analytics Translator Trainer @ Xebia',
+          location: '阿姆斯特丹',
+          prev: null,
+          note: 'Data Analytics / AI Trainer',
+          linkedin: 'tennyson-wu',
+          tag: 'MBA'
+        }
+      ],
+      _returnSearched: true,
+      enrolled: [
+        {
+          name: 'Yu Chen',
+          degree: 'MSc Data Science & Business Analytics (2025–2026, 就讀中)',
+          undergrad: '國立臺灣大學 BBA (2019–2023, GPA 3.99/4.3)',
+          current: null,
+          location: '阿姆斯特丹',
+          prev: null,
+          note: null,
+          linkedin: 'yu-chen-4143b4391'
+        },
+        {
+          name: 'Chia Yu (Jasmine) Yang',
+          degree: 'MSc Data Science and Business Analytics (2024–present)',
+          undergrad: '國立陽明交通大學 資管與財金系 (2019–2024)',
+          current: null,
+          location: '阿姆斯特丹',
+          prev: null,
+          note: '曾在工研院工作',
+          linkedin: 'jasmineyang345827'
+        }
+      ],
+      return: [
+        {
+          name: '鄭修哲 Shiu-Che (Oscar) Cheng',
+          field: 'Data Analytics',
+          degree: 'BSc Business Analytics and Data Science (Cum Laude, GPA 8.06, 2021–2024)',
+          undergrad: '師大附中',
+          current: 'CRM Data Analyst @ Human8',
+          location: '台北',
+          prev: null,
+          note: '學士非碩士，但科系完全是 Data Science',
+          linkedin: 'shiu-che-cheng',
+          tag: 'BSc'
+        },
+        {
+          name: 'JiunHan Chen',
+          field: 'Machine Learning',
+          degree: 'MSc AI (2017–2019)',
+          undergrad: null,
+          current: 'Senior Technical Manager @ 區塊科技',
+          location: '台北',
+          prev: 'ML Research Engineer @ 英業達',
+          note: null,
+          linkedin: 'jiunhan-chen'
+        },
+        {
+          name: 'Yachu Yang',
+          field: 'AI Engineering',
+          degree: 'MSc AI (2017–2019)',
+          undergrad: null,
+          current: 'AI Scientist @ Vernus AI 睿泉生技',
+          location: '台北',
+          prev: null,
+          note: null,
+          linkedin: 'yachu-yang'
+        },
+        {
+          name: 'Yung Yi Chu',
+          field: 'Data Analytics',
+          degree: 'Master of Finance - Quantitative Finance (2022–2023)',
+          undergrad: null,
+          current: 'Financial Services Audit Associate @ PwC Taiwan 資誠',
+          location: '台北',
+          prev: null,
+          note: null,
+          linkedin: 'yung-yi-chu'
+        }
+      ]
+    }
+  ]
+};
+
+// ===== INTERNATIONAL DATA =====
+const intlData = {
+  schools: [
+    {
+      id: 'ucsd-intl',
+      name: 'UCSD',
+      fullName: 'University of California San Diego',
+      badgeClass: 'badge-ucsd',
+      groups: [
+        {
+          nationality: 'India',
+          flag: '\u{1F1EE}\u{1F1F3}',
+          natClass: 'nat-india',
+          stayLabel: '留在美國',
+          people: [
+            {
+              name: 'Pulleti Sai Aditya',
+              field: 'Machine Learning',
+              degree: 'MS Robotics',
+              undergrad: 'IIT Guwahati',
+              current: 'Lead MLE @ JPMorgan Chase (Bay Area)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'pulleti'
+            },
+            {
+              name: 'Rishabh Thapliyal',
+              field: 'Machine Learning',
+              degree: 'MS ECE (ML&DS)',
+              undergrad: 'IIT Bombay',
+              current: 'MLE II @ Adobe',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'rishabh-thapliyal-15103417a'
+            },
+            {
+              name: 'ISHITA KHATRI',
+              field: 'Data Science',
+              degree: 'MS Data Science (HDSI)',
+              undergrad: 'VIT Vellore',
+              current: 'Data Scientist @ American Express',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'ishita-khatri-652a99156'
+            },
+            {
+              name: 'Dinesh Karthikeyan',
+              field: 'Data Science',
+              degree: 'MS Data Science (HDSI)',
+              undergrad: null,
+              current: 'Data Scientist @ Meta',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'dinesh-karthikeyan-368052204'
+            },
+            {
+              name: 'Tejas Ramesh',
+              field: 'Data Science',
+              degree: 'MS Data Science (HDSI)',
+              undergrad: 'NITK Karnataka',
+              current: 'Data Scientist @ Siemens',
+              location: null,
+              prev: 'DS AVP @ Morgan Stanley',
+              note: null,
+              linkedin: 'tejas1908'
+            }
+          ]
+        },
+        {
+          nationality: 'China',
+          flag: '\u{1F1E8}\u{1F1F3}',
+          natClass: 'nat-china',
+          stayLabel: '留在美國',
+          people: [
+            {
+              name: 'Zoey (Ziyan) Zhou',
+              field: 'Software Engineering (ML/Data)',
+              degree: 'MS ECE (ML&DS)',
+              undergrad: '華東師範大學',
+              current: 'SDE @ Meta (San Diego)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'zhou-ziyan'
+            },
+            {
+              name: 'Mingqing Xu',
+              field: 'Software Engineering (ML/Data)',
+              degree: 'MS ECE (ML&DS)',
+              undergrad: '天津大學',
+              current: 'Automation Engineer @ PAX Technology',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'mingqing-xu'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'uva-intl',
+      name: 'University of Amsterdam',
+      fullName: 'University of Amsterdam',
+      badgeClass: 'badge-uva',
+      groups: [
+        {
+          nationality: 'South Korea',
+          flag: '\u{1F1F0}\u{1F1F7}',
+          natClass: 'nat-korea',
+          stayLabel: '留在歐洲',
+          people: [
+            {
+              name: 'Jinhyun Kim',
+              field: 'Data Science',
+              degree: 'MSc Quantitative Finance + Minor DS & AI (2021–2022)',
+              undergrad: 'UvA BSc Economics',
+              current: 'Data Scientist @ Samsung Electronics (阿姆斯特丹)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'jinhyun-kim-25525519a'
+            },
+            {
+              name: 'Ho Yeon Won',
+              field: 'Data Analytics',
+              degree: 'MSc Behavioral Data Science (Cum Laude, 2022–2023)',
+              undergrad: 'UvA BSc Psychology',
+              current: 'Data Analyst @ Just Eat Takeaway.com (阿姆斯特丹)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'ho-yeon-won'
+            }
+          ]
+        },
+        {
+          nationality: 'China',
+          flag: '\u{1F1E8}\u{1F1F3}',
+          natClass: 'nat-china',
+          stayLabel: '留在歐洲',
+          people: [
+            {
+              name: 'Xiangyu Du',
+              field: 'Data Engineering',
+              degree: 'MSc Information Studies: Data Science (2022–2023)',
+              undergrad: 'TU Delft BSc CS',
+              current: 'Data Engineer @ ABN AMRO (阿姆斯特丹)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'xiangyu-du'
+            },
+            {
+              name: 'Yichen (Ezio) Tong',
+              field: 'Data Engineering',
+              degree: 'MSc CS - Software Engineering (UvA-VU, 2022–2024)',
+              undergrad: '華北電力大學',
+              current: 'SRE / Data Engineer @ Huawei Nederland',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'yichen-tong'
+            }
+          ]
+        },
+        {
+          nationality: 'Indonesia',
+          flag: '\u{1F1EE}\u{1F1E9}',
+          natClass: 'nat-indonesia',
+          stayLabel: '留在歐洲（德國）',
+          people: [
+            {
+              name: 'Za\u00EFda (Iasha) Rivai',
+              field: 'Data Science',
+              degree: 'MSc Computational Science + MSc Biomathematics (2019–2021)',
+              undergrad: 'TU Delft BSc Life Science',
+              current: 'Data Scientist @ Deutsche Telekom (德國柏林)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'za\u00EFda-rivai-78673063'
+            }
+          ]
+        },
+        {
+          nationality: 'India',
+          flag: '\u{1F1EE}\u{1F1F3}',
+          natClass: 'nat-india',
+          stayLabel: '留在歐洲',
+          people: [
+            {
+              name: 'Arjun Wadhawan',
+              field: 'Data Science',
+              degree: 'PhD Computational Science (2016–2020)',
+              undergrad: 'IIT Kharagpur',
+              current: 'Data Scientist \u2192 Project Leader @ ASML (荷蘭)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'arjunwadhawan'
+            },
+            {
+              name: 'Vignesh M.',
+              field: 'Data Analytics',
+              degree: 'MSc CS (UvA-VU)',
+              undergrad: 'Kongu Engineering College',
+              current: 'Business Data Analyst / Tech Consultant (阿姆斯特丹)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'vigneshmurugesan14'
+            }
+          ]
+        },
+        {
+          nationality: 'India',
+          flag: '\u{1F1EE}\u{1F1F3}',
+          natClass: 'nat-india',
+          stayLabel: '回亞洲（印度）',
+          returnGroup: true,
+          people: [
+            {
+              name: 'Narendiran Chembu',
+              field: 'Machine Learning',
+              degree: 'MSc AI (2018–2020)',
+              undergrad: 'IIT Madras',
+              current: 'Staff ML Engineer @ Fast Code AI (印度班加羅爾)',
+              location: null,
+              prev: null,
+              note: null,
+              linkedin: 'cgnarendiran'
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+// ===== RENDER =====
+const linkedinSVG = `<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`;
+
+const fieldColorMap = {
+  'Data Science': 'field-ds',
+  'Machine Learning': 'field-ml',
+  'AI Engineering': 'field-ai',
+  'Software Engineering (ML/Data)': 'field-swe',
+  'Data Analytics': 'field-da',
+  'Data Engineering': 'field-de',
+};
+
+function renderCard(person, extraClass) {
+  const cls = extraClass ? ` ${extraClass}` : '';
+  const noteHtml = person.note ? `<div class="card-note">${person.note}</div>` : '';
+  const prevHtml = person.prev ? `<div class="card-detail"><span class="label">前職：</span><span>${person.prev}</span></div>` : '';
+  const tagHtml = person.tag ? `<span class="card-tag tag-broad">${person.tag}</span>` : '';
+  const fieldHtml = person.field ? `<span class="field-tag ${fieldColorMap[person.field] || 'field-ds'}">${person.field}</span>` : '';
+  return `
+    <div class="person-card${cls}">
+      ${fieldHtml}
+      <div class="card-top">
+        <div class="card-name">${person.name}${tagHtml}</div>
+        <a class="linkedin-btn" href="https://linkedin.com/in/${person.linkedin}/" target="_blank" rel="noopener">${linkedinSVG} LinkedIn</a>
+      </div>
+      <div class="card-detail"><span class="label">學位：</span><span>${person.degree}</span></div>
+      ${person.undergrad ? `<div class="card-detail"><span class="label">大學：</span><span>${person.undergrad}</span></div>` : ''}
+      ${person.current ? `<div class="card-detail"><span class="label">現職：</span><span>${person.current}</span></div>` : ''}
+      ${person.location ? `<div class="card-detail"><span class="label">地點：</span><span>${person.location}</span></div>` : ''}
+      ${prevHtml}
+      ${noteHtml}
+    </div>`;
+}
+
+function renderPlaceholder() {
+  return `<div class="placeholder"><span class="spinner"></span>搜尋中...</div>`;
+}
+
+function renderSection(school) {
+  const stayCards = school.stay.length > 0
+    ? `<div class="cards-grid">${school.stay.map(p => renderCard(p)).join('')}</div>`
+    : renderPlaceholder();
+
+  const returnCards = school.return.length > 0
+    ? `<div class="cards-grid">${school.return.map(p => renderCard(p)).join('')}</div>`
+    : (school._returnSearched ? `<div class="no-results">未找到符合案例</div>` : renderPlaceholder());
+
+  // Broad match subsection (UvA only)
+  const broadMatch = school.broadMatch || [];
+  const broadHtml = broadMatch.length > 0 ? `
+      <div class="subsection">
+        <div class="subsection-header">
+          <span class="dot" style="background:var(--accent2)"></span>
+          <h3>廣義符合（非標準碩士）</h3>
+          <span style="color:var(--text-muted);font-size:0.85rem;margin-left:auto">${broadMatch.length} 人</span>
+        </div>
+        <div class="cards-grid">${broadMatch.map(p => renderCard(p, 'broad-match')).join('')}</div>
+      </div>` : '';
+
+  // Enrolled subsection (UvA only)
+  const enrolled = school.enrolled || [];
+  const enrolledHtml = enrolled.length > 0 ? `
+      <div class="subsection">
+        <div class="subsection-header">
+          <span class="dot" style="background:var(--text-muted);border:2px dashed var(--orange);background:transparent"></span>
+          <h3>目前就讀中</h3>
+          <span style="color:var(--text-muted);font-size:0.85rem;margin-left:auto">${enrolled.length} 人</span>
+        </div>
+        <div class="cards-grid">${enrolled.map(p => renderCard(p, 'enrolled')).join('')}</div>
+      </div>` : '';
+
+  return `
+    <section class="school-section">
+      <div class="school-header">
+        <h2>${school.name}</h2>
+        <span class="school-badge ${school.badgeClass}">${school.field}</span>
+      </div>
+      <p style="color:var(--text-muted);margin-bottom:1.5rem;font-size:0.9rem">${school.fullName}</p>
+
+      <div class="subsection">
+        <div class="subsection-header">
+          <span class="dot dot-stay"></span>
+          <h3>${school.stayLabel}</h3>
+          <span style="color:var(--text-muted);font-size:0.85rem;margin-left:auto">${school.stay.length} 人</span>
+        </div>
+        ${stayCards}
+      </div>
+
+      ${broadHtml}
+      ${enrolledHtml}
+
+      <div class="subsection">
+        <div class="subsection-header">
+          <span class="dot dot-return"></span>
+          <h3>${school.returnLabel}</h3>
+          <span style="color:var(--text-muted);font-size:0.85rem;margin-left:auto">${school.return.length > 0 ? school.return.length + ' 人' : '0 人'}</span>
+        </div>
+        ${returnCards}
+      </div>
+    </section>`;
+}
+
+function renderStats() {
+  return `<div class="stats-grid">${data.schools.map(school => {
+    const broadN = (school.broadMatch || []).length;
+    const stayN = school.stay.length + broadN;
+    const retN = school.return.length;
+    const total = stayN + retN;
+    const stayPct = total > 0 ? Math.round(stayN / total * 100) : 0;
+    const retPct = total > 0 ? Math.round(retN / total * 100) : 0;
+    const pending = total === 0;
+    return `
+      <div class="stat-card">
+        <h3>${school.name}</h3>
+        ${pending ? `<p style="color:var(--text-muted);font-size:0.9rem">資料收集中</p>` : `
+        <div class="stat-row">
+          <span class="stat-label">${school.stayLabel}</span>
+          <span class="stat-value stay">${stayN} <small style="font-size:0.8rem;font-weight:400;color:var(--text-muted)">(${stayPct}%)</small></span>
+        </div>
+        <div class="stat-bar"><div class="stat-bar-fill stay" style="width:${stayPct}%"></div></div>
+        <div class="stat-row" style="margin-top:0.75rem">
+          <span class="stat-label">${school.returnLabel}</span>
+          <span class="stat-value return">${retN} <small style="font-size:0.8rem;font-weight:400;color:var(--text-muted)">(${retPct}%)</small></span>
+        </div>
+        <div class="stat-bar"><div class="stat-bar-fill return" style="width:${retPct}%"></div></div>
+        <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.75rem">共 ${total} 人</p>
+        `}
+      </div>`;
+  }).join('')}</div>`;
+}
+
+function renderAnalysis() {
+  const observations = [
+    '兩校留當地比例相近：UCSD 留美 71%（12/17）、UvA 留歐 69%（9/13），約七成選擇留在當地就業',
+    'UCSD 留美首選雇主集中在科技巨頭：AWS 3 人、NVIDIA、Microsoft、Qualcomm、IBM 各 1 人',
+    'UCSD 回台者多進入半導體業（TSMC 3 人、MediaTek 1 人），反映台灣半導體產業對海歸人才的吸引力',
+    'UCSD 回台者中有人先在美國工作數年再回台（如 Louis Lu 在 Dolby 工作 3 年後回台積電），並非全部畢業即回台',
+    'UCSD 留美者中「實習轉正」為常見路徑（Microsoft、Amazon 均有實習後留任案例）',
+    'UvA 留歐者集中在荷蘭金融業（ING 3 人、ABN AMRO 2 人），反映荷蘭金融業對數據人才需求強勁',
+    'UvA 回台者多走 AI/ML 領域（區塊科技、Vernus AI），與留歐者走金融業形成對比',
+    '兩校共同點：跨領域轉職背景常見（獸醫轉 DS、會計轉 CS、物理轉 Big Data、生科轉 Data），顯示研究所是轉職重要跳板',
+    '整體趨勢：UCSD 留美多走大型科技業 SWE/MLE，回台走半導體；UvA 留歐多走金融業，回台走 AI 新創，反映不同地區的產業結構差異'
+  ];
+
+  return `
+    <div class="analysis-section">
+      <div class="analysis-card">
+        <h3>比較分析與觀察</h3>
+        <ul>${observations.map(o => `<li>${o}</li>`).join('')}</ul>
+      </div>
+    </div>`;
+}
+
+function renderIntlCard(person, natClass, flag) {
+  const noteHtml = person.note ? `<div class="card-note">${person.note}</div>` : '';
+  const prevHtml = person.prev ? `<div class="card-detail"><span class="label">前職：</span><span>${person.prev}</span></div>` : '';
+  const fieldHtml = person.field ? `<span class="field-tag ${fieldColorMap[person.field] || 'field-ds'}">${person.field}</span>` : '';
+  const natHtml = `<span class="nationality-tag ${natClass}">${flag}</span>`;
+  return `
+    <div class="person-card">
+      <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.6rem">${natHtml}${fieldHtml}</div>
+      <div class="card-top">
+        <div class="card-name">${person.name}</div>
+        <a class="linkedin-btn" href="https://linkedin.com/in/${person.linkedin}/" target="_blank" rel="noopener">${linkedinSVG} LinkedIn</a>
+      </div>
+      <div class="card-detail"><span class="label">學位：</span><span>${person.degree}</span></div>
+      ${person.undergrad ? `<div class="card-detail"><span class="label">大學：</span><span>${person.undergrad}</span></div>` : ''}
+      ${person.current ? `<div class="card-detail"><span class="label">現職：</span><span>${person.current}</span></div>` : ''}
+      ${person.location ? `<div class="card-detail"><span class="label">地點：</span><span>${person.location}</span></div>` : ''}
+      ${prevHtml}
+      ${noteHtml}
+    </div>`;
+}
+
+function renderIntlSection() {
+  let html = `<hr class="section-divider"><h2 class="intl-section-title">亞洲外國人畢業後去向</h2>
+    <p class="intl-section-subtitle">同校非台灣籍亞洲學生的就業比較</p>`;
+
+  // Stats for international
+  html += `<div class="stats-grid" style="margin-bottom:2rem">`;
+  intlData.schools.forEach(school => {
+    if (school.groups.length === 0) {
+      html += `<div class="stat-card"><h3>${school.name}</h3><p style="color:var(--text-muted);font-size:0.9rem">搜尋中...</p></div>`;
+      return;
+    }
+    const stayGroups = school.groups.filter(g => !g.returnGroup);
+    const retGroups = school.groups.filter(g => g.returnGroup);
+    const stayN = stayGroups.reduce((s, g) => s + g.people.length, 0);
+    const retN = retGroups.reduce((s, g) => s + g.people.length, 0);
+    const total = stayN + retN;
+    const stayPct = total > 0 ? Math.round(stayN / total * 100) : 0;
+    const retPct = total > 0 ? Math.round(retN / total * 100) : 0;
+    const stayWord = school.id === 'ucsd-intl' ? '留美' : '留歐';
+    html += `<div class="stat-card"><h3>${school.name}</h3>
+      <div class="stat-row">
+        <span class="stat-label">${stayWord}</span>
+        <span class="stat-value stay">${stayN} <small style="font-size:0.8rem;font-weight:400;color:var(--text-muted)">(${stayPct}%)</small></span>
+      </div>
+      <div class="stat-bar"><div class="stat-bar-fill stay" style="width:${stayPct}%"></div></div>
+      ${retN > 0 ? `<div class="stat-row" style="margin-top:0.75rem">
+        <span class="stat-label">回亞洲</span>
+        <span class="stat-value return">${retN} <small style="font-size:0.8rem;font-weight:400;color:var(--text-muted)">(${retPct}%)</small></span>
+      </div>
+      <div class="stat-bar"><div class="stat-bar-fill return" style="width:${retPct}%"></div></div>` : ''}
+      <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.75rem">共 ${total} 人</p>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // Cards per school
+  intlData.schools.forEach(school => {
+    html += `<section class="school-section">
+      <div class="school-header">
+        <h2>${school.name}</h2>
+        <span class="school-badge ${school.badgeClass}">亞洲外國人</span>
+      </div>
+      <p style="color:var(--text-muted);margin-bottom:1.5rem;font-size:0.9rem">${school.fullName}</p>`;
+
+    if (school.groups.length === 0) {
+      html += renderPlaceholder();
+    } else {
+      school.groups.forEach(g => {
+        const dotStyle = g.returnGroup ? 'background:var(--orange)' : 'background:var(--green)';
+        html += `<div class="subsection">
+          <div class="subsection-header">
+            <span class="nationality-tag ${g.natClass}">${g.flag}</span>
+            <span class="dot" style="${dotStyle}"></span>
+            <h3>${g.nationality} — ${g.stayLabel}</h3>
+            <span style="color:var(--text-muted);font-size:0.85rem;margin-left:auto">${g.people.length} 人</span>
+          </div>
+          <div class="cards-grid">${g.people.map(p => renderIntlCard(p, g.natClass, g.flag)).join('')}</div>
+        </div>`;
+      });
+    }
+    html += `</section>`;
+  });
+
+  return html;
+}
+
+document.getElementById('stats').innerHTML = renderStats();
+document.getElementById('app').innerHTML = data.schools.map(renderSection).join('') + renderAnalysis();
+document.getElementById('intl').innerHTML = renderIntlSection();
+</script>
+</body>
+</html>
