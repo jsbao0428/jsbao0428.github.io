@@ -7,6 +7,10 @@
 - **WHEN** 使用者造訪 `/about` 頁面
 - **THEN** 顯示圓形大頭照、姓名、職稱、地點資訊
 
+#### Scenario: Forward Deployed Engineer 職稱顯示
+- **WHEN** 使用者瀏覽個人資訊區塊
+- **THEN** 職稱顯示為 `Forward Deployed Engineer`
+
 ### Requirement: Download Resume button triggers file download
 The About page SHALL render a "Download Resume" link that downloads the resume PDF file when clicked.
 
@@ -45,6 +49,14 @@ The About page SHALL render a "Contact Me" button that opens a ContactPopover co
 #### Scenario: 時間軸正確渲染
 - **WHEN** 使用者瀏覽 Work Experience 區塊
 - **THEN** 經歷以垂直時間軸排列，最新的在上方，每項有圖示和連接線
+
+#### Scenario: 目前職位顯示
+- **WHEN** 使用者瀏覽最新一筆 Shopee 工作經歷
+- **THEN** 職位顯示為 `Forward Deployed Engineer`
+
+#### Scenario: 代表作敘述
+- **WHEN** 使用者閱讀最新一筆工作經歷的描述
+- **THEN** 內容以 autonomous code-repair agent 為代表作，並說明從 bug intake、RCA、自動修復到 production rollout 的端到端 ownership
 
 ### Requirement: 學歷區塊
 頁面 SHALL 展示學歷資訊。

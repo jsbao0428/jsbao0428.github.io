@@ -33,6 +33,14 @@
 - **WHEN** 網站 build 時
 - **THEN** 專案資料從 `src/lib/data/` 中的靜態資料檔案讀取
 
+#### Scenario: AI 專案內容
+- **WHEN** 使用者瀏覽 Selected Projects 區塊
+- **THEN** 專案清單包含 Autonomous Code Repair Agent、AI SRE，以及以 Qwen2.5-VL 微調實作的 BSMI & LLM Fine-Tuning
+
+#### Scenario: 代表作排序
+- **WHEN** 使用者開啟首頁或 Work 頁面
+- **THEN** Autonomous Code Repair Agent SHALL 作為第一張專案卡片顯示
+
 ### Requirement: 首頁 Responsive 設計
 首頁 SHALL 在手機、平板、桌面裝置上正確顯示。
 

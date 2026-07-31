@@ -1,6 +1,6 @@
 export const profile = {
 	name: 'Yiming (Polo) Huang',
-	title: 'Senior Data Engineer',
+	title: 'Forward Deployed Engineer',
 	location: 'Taipei, Taiwan',
 	avatar: '/avatar.jpg',
 	stats: [
@@ -25,12 +25,12 @@ export const profile = {
 	experience: [
 		{
 			company: 'Shopee',
-			role: 'Senior Data Engineer',
+			role: 'Forward Deployed Engineer',
 			type: 'Full-time',
 			location: 'Taipei, Taiwan',
 			period: 'Mar 2023 - Present',
 			description:
-				'Managed 100+ production Airflow pipelines processing 500GB+ data for financial reporting and MLOps. Built internal backend systems (FastAPI, Docker, K8s) serving 500+ users. Architected LLM-driven compliance agents using LangGraph with 99.5% task accuracy. Streamlined business workflows via internal platforms, reducing manual effort by 90%.',
+				'Partner with internal teams to turn ambiguous operational challenges into production-ready AI systems. Designed and built an autonomous code-repair agent that takes reported bugs from intake and RCA through isolated implementation, deterministic verification, independent review, and GitLab delivery, with resumable execution and policy-based safety gates. Own solutions end to end—from discovery and architecture to rollout, observability, and continuous improvement—while delivering agentic and data platforms across LangGraph, FastAPI, Airflow, and Kubernetes.',
 			current: true
 		},
 		{
